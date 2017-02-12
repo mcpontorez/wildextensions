@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace WildUI.UIComponentsManagement.Data
+namespace WildUI.UIComponents.Data
 {
     [CreateAssetMenu(fileName = "UIComponentsData", menuName = "WildUI/UIComponentsData")]
     public class UIComponentsData : ScriptableObject, IOnValidate
     {
         public Canvas canvas;
-        public Button button;
+        public ButtonController button;
 
         public void OnValidate()
         {

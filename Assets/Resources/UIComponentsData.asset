@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Name: UIComponentsData
   m_EditorClassIdentifier: 
   canvas: {fileID: 223873513130641198, guid: ad55cc8df39855447a4317332f4aa135, type: 2}
-  button: {fileID: 114258156305972064, guid: 40ab232d8717f8f48bd296eea14b906e, type: 2}
+  button: {fileID: 114624987421733846, guid: 40ab232d8717f8f48bd296eea14b906e, type: 2}

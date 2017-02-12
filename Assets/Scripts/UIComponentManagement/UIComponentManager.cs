@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using WildUI.UIComponentsManagement.Data;
+using WildUI.UIComponents.Data;
 
-namespace WildUI.UIComponentsManagement
+namespace WildUI.UIComponents.Management
 {
     public static class UIComponentManager
     {

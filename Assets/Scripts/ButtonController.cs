@@ -1,19 +1,30 @@
-﻿using System.Collections;
+﻿using InterfacesMB;
+using System.Collections;
 using System.Collections.Generic;
 using UIMonoBehaviourHelpers;
 using UnityEngine;
+using System;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class ButtonController : UIMonoBehaviourBase
+namespace WildUI.UIComponents
 {
-	// Use this for initialization
-	void Start ()
-	{
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-		
-	}
+    public class ButtonController : UIMonoBehaviourBase, IOnValidate, IPointerClickHandler
+    {
+        [SerializeField]
+        private Text _textComponent;
+
+        public void OnValidate()
+        {
+            _textComponent = GetComponentInChildren<Text>();
+        }
+
+        public string Text { get { return _textComponent.text; } set { _textComponent.text = value; } }
+
+        public event Action OnClick;
+        void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
+        {
+            OnClick();
+        }
+    }
 }
