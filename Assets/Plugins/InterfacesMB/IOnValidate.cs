@@ -1,6 +1,6 @@
 ﻿namespace InterfacesMB
 {
-    public interface IValidate
+    public interface IOnValidate
     {
         void OnValidate();
     }

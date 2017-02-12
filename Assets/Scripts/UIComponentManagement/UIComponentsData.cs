@@ -7,7 +7,7 @@ using UnityEngine.UI;
 namespace WildUI.UIComponentsManagement.Data
 {
     [CreateAssetMenu(fileName = "UIComponentsData", menuName = "WildUI/UIComponentsData")]
-    public class UIComponentsData : ScriptableObject, IValidate
+    public class UIComponentsData : ScriptableObject, IOnValidate
     {
         public Canvas canvas;
         public Button button;
