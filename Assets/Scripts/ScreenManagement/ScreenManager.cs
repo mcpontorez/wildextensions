@@ -4,8 +4,17 @@ using UnityEngine;
 
 namespace WildUI.ScreenManagement
 {
-    public class ScreenManager
-    {
+    public static class ScreenManager
+    {        
+        static ScreenManager()
+        {
 
+        }
+        [RuntimeInitializeOnLoadMethod]
+        public static void ShowScreen()
+        {
+            GameObject gameObject = new GameObject();
+            gameObject.AddComponent<Screen>().Init();
+        }
     }
 }

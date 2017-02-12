@@ -15,7 +15,7 @@ namespace WildUI.UIComponentsManagement
             {
                 if(!_components)
                 {
-                    _components = Resources.Load<UIComponentsData>(" ");
+                    _components = Resources.Load<UIComponentsData>("UIComponentsData");
                 }
                 return _components;
             }
