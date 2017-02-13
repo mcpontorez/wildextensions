@@ -1,11 +1,11 @@
 ﻿using InterfacesMB;
 using System.Collections;
 using System.Collections.Generic;
-using UIMonoBehaviourHelpers;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using WildUI.UIHelpers;
 
 namespace WildUI.UIComponents
 {

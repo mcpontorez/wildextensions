@@ -1,4 +1,4 @@
-﻿using UnityEngine;namespace UIMonoBehaviourHelpers
+﻿using UnityEngine;namespace WildUI.UIHelpers
 {
     public interface IUIMonoBehaviour
     {
