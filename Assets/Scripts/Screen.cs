@@ -11,11 +11,11 @@ public class Screen : MonoBehaviour
 	public void Init()
     {
         gameObject.name = "Screen";
-        Canvas canvas = Instantiate(UIComponentManager.Components.canvas);
+        CanvasController canvas = Instantiate(UIComponentManager.Components.canvas);
         canvas.transform.SetParent(transform);
 
         ButtonController button = Instantiate(UIComponentManager.Components.button);
-        button.rectTransform.SetParent(canvas.transform);
+        button.rectTransform.SetParent(canvas.RootLayout);
         button.rectTransform.SetAnchors(new Vector2(0.1f, 0.1f), new Vector2(0.5f, 0.5f));
         button.Text = "69 рублей";
         button.OnClick += () => Debug.Log("нагетсы");

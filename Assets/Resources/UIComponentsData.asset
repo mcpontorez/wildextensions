@@ -11,5 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3722dc19f062b3c4c8d5c7fe25248443, type: 3}
   m_Name: UIComponentsData
   m_EditorClassIdentifier: 
-  canvas: {fileID: 223873513130641198, guid: ad55cc8df39855447a4317332f4aa135, type: 2}
+  canvas: {fileID: 114348086374567020, guid: ad55cc8df39855447a4317332f4aa135, type: 2}
   button: {fileID: 114624987421733846, guid: 40ab232d8717f8f48bd296eea14b906e, type: 2}
