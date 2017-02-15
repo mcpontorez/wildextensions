@@ -13,5 +13,12 @@ namespace WildUI.UIHelpers
             rectTransform.offsetMin = Vector2.zero;
             rectTransform.offsetMax = Vector2.zero;
         }
+
+        public static void SetOffsets(this RectTransform rectTransform, Vector2 offsetMin, Vector2 offsetMax)
+        {
+            rectTransform.offsetMin = offsetMin;
+            rectTransform.offsetMax = offsetMax;
+            rectTransform.localScale = Vector3.one;
+        }
     }
 }
