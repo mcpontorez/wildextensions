@@ -11,10 +11,35 @@ namespace WildUI.ScreenManagement
 
         }
         [RuntimeInitializeOnLoadMethod]
-        public static void ShowScreen()
+        public static void ShowScreenExample()
         {
-            GameObject gameObject = new GameObject();
-            gameObject.AddComponent<Screen>().Init();
+            ShowScreen<WIldUI.Screens.MainMenuScreen>();
+        }
+
+        private static Dictionary<System.Type, IScreen> _screens = new Dictionary<System.Type, IScreen>();
+
+        public static void ShowScreen<T>() where T : IScreen, new()
+        {
+            System.Type screenType = typeof(T);
+
+            if (_screens.ContainsKey(screenType))
+            {
+                _screens[screenType].Show();
+                return;
+            }
+
+            T screen = new T();
+            screen.Init();
+            screen.Show();
+            _screens.Add(screenType, screen);
+        }
+
+        public static void HideScreen<T>() where T: IScreen
+        {
+            System.Type screenType = typeof(T);
+
+            if (_screens.ContainsKey(screenType))
+                _screens[screenType].Hide();
         }
     }
 }
