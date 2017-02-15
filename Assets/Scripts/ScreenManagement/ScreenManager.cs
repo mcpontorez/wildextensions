@@ -11,7 +11,7 @@ namespace WildUI.ScreenManagement
 
         }
         [RuntimeInitializeOnLoadMethod]
-        public static void ShowScreenExample()
+        private static void ShowScreenExample()
         {
             ShowScreen<WIldUI.Screens.MainMenuScreen>();
         }
@@ -22,16 +22,14 @@ namespace WildUI.ScreenManagement
         {
             System.Type screenType = typeof(T);
 
-            if (_screens.ContainsKey(screenType))
+            if (!_screens.ContainsKey(screenType))
             {
-                _screens[screenType].Show();
-                return;
+                T screen = new T();
+                screen.Init();
+                _screens.Add(screenType, screen);
             }
 
-            T screen = new T();
-            screen.Init();
-            screen.Show();
-            _screens.Add(screenType, screen);
+            _screens[screenType].Show();
         }
 
         public static void HideScreen<T>() where T: IScreen
@@ -40,6 +38,17 @@ namespace WildUI.ScreenManagement
 
             if (_screens.ContainsKey(screenType))
                 _screens[screenType].Hide();
+        }
+
+        public static void DestroyScreen<T>() where T : IScreen
+        {
+            System.Type screenType = typeof(T);
+
+            if (!_screens.ContainsKey(screenType))
+                return;
+
+            _screens[screenType].Destroy();
+            _screens.Remove(screenType);
         }
     }
 }

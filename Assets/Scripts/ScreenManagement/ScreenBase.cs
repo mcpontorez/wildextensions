@@ -15,6 +15,8 @@ namespace WildUI.ScreenManagement
             Data = Resources.Load<ScreenData>(DataPath);
             Data = Object.Instantiate(Data);
 
+            Object.DontDestroyOnLoad(Data.gameObject);
+
             OnInit();
         }
 
@@ -28,13 +30,19 @@ namespace WildUI.ScreenManagement
 
         protected virtual void OnShow() { }
 
-        void IScreen.Hide()
+        public void Hide()
         {
             Data.gameObject.SetActive(false);
             OnHide();
         }
 
         protected virtual void OnHide() { }
+
+        protected void HideShow<T>() where T : IScreen, new()
+        {
+            Hide();
+            ScreenManager.ShowScreen<T>();
+        }
 
         void IScreen.Destroy()
         {

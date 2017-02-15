@@ -18,7 +18,7 @@ namespace WIldUI.Screens
             ButtonController button = Object.Instantiate(UIComponentManager.Components.button, Data.GetUIContainerRectTransform(UIContainerTag.Tag1), false);
 
             button.Text = "играть";
-            button.OnClick += () => Debug.Log("играю");
+            button.OnClick += () => HideShow<LevelsScreen>();
 
             for (int i = 0; i < 3; i++)
             {
