@@ -13,11 +13,20 @@ public class Screen : MonoBehaviour
     {
         gameObject.name = "Screen";
         ScreenData data = Resources.Load<ScreenData>("Screen");
-        data = InstantiateAndAdopt(data, transform);
+        data = Instantiate(data, transform, false);
 
-        ButtonController button = InstantiateAndAdopt(UIComponentManager.Components.button, data.GetUIContainerRectTransform(UIContainerTag.Tag1));
+        ButtonController button = Instantiate(UIComponentManager.Components.button, data.GetUIContainerRectTransform(UIContainerTag.Tag1), false);
+
         button.Text = "играть";
         button.OnClick += () => Debug.Log("играю");
+
+        for (int i = 0; i < 3; i++)
+        {
+            button = Instantiate(UIComponentManager.Components.button, data.GetUIContainerRectTransform(UIContainerTag.Tag0), false);
+
+            button.Text = "кнопка" + i;
+            button.OnClick += () => Debug.Log("кнопка" + i);
+        }
 
         //gameObject.name = "Screen";
         //CanvasController canvas = Instantiate(UIComponentManager.Components.canvas);
@@ -32,12 +41,5 @@ public class Screen : MonoBehaviour
         //button.rectTransform.SetAnchors(new Vector2(0.1f, 0.1f), new Vector2(0.5f, 0.5f));
         //button.Text = "69 рублей";
         //button.OnClick += () => Debug.Log("нагетсы");
-    }
-
-    public T1 InstantiateAndAdopt<T1, T2>(T1 objectToAdopt, T2 parent) where T1 : Component where T2 : Transform
-    {
-        objectToAdopt = Instantiate(objectToAdopt);
-        objectToAdopt.transform.SetParent(parent);
-        return objectToAdopt;
     }
 }
