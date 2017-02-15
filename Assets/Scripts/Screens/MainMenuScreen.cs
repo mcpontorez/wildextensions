@@ -15,17 +15,18 @@ namespace WIldUI.Screens
         {
             base.OnInit();
 
-            ButtonController button = Object.Instantiate(UIComponentManager.Components.button, _data.GetUIContainerRectTransform(UIContainerTag.Tag1), false);
+            ButtonController button = Object.Instantiate(UIComponentManager.Components.button, Data.GetUIContainerRectTransform(UIContainerTag.Tag1), false);
 
             button.Text = "играть";
             button.OnClick += () => Debug.Log("играю");
 
             for (int i = 0; i < 3; i++)
             {
-                button = Object.Instantiate(UIComponentManager.Components.button, _data.GetUIContainerRectTransform(UIContainerTag.Tag0), false);
+                button = Object.Instantiate(UIComponentManager.Components.button, Data.GetUIContainerRectTransform(UIContainerTag.Tag0), false);
 
                 button.Text = "кнопка" + i;
-                button.OnClick += () => Debug.Log("кнопка" + i);
+                int c = i;
+                button.OnClick += () => Debug.Log("кнопка" + c);
             }
         }
     }

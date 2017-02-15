@@ -8,12 +8,12 @@ namespace WildUI.ScreenManagement
     {
         protected abstract string DataPath { get; }
 
-        protected ScreenData _data;
+        protected ScreenData Data { get; private set; }
 
         void IScreen.Init()
         {
-            _data = Resources.Load<ScreenData>(DataPath);
-            _data = Object.Instantiate(_data);
+            Data = Resources.Load<ScreenData>(DataPath);
+            Data = Object.Instantiate(Data);
 
             OnInit();
         }
@@ -22,7 +22,7 @@ namespace WildUI.ScreenManagement
 
         void IScreen.Show()
         {
-            _data.gameObject.SetActive(true);
+            Data.gameObject.SetActive(true);
             OnShow();
         }
 
@@ -30,7 +30,7 @@ namespace WildUI.ScreenManagement
 
         void IScreen.Hide()
         {
-            _data.gameObject.SetActive(false);
+            Data.gameObject.SetActive(false);
             OnHide();
         }
 
@@ -39,7 +39,7 @@ namespace WildUI.ScreenManagement
         void IScreen.Destroy()
         {
             OnDestroy();
-            Object.Destroy(_data.gameObject);
+            Object.Destroy(Data.gameObject);
         }
 
         protected virtual void OnDestroy() { }
