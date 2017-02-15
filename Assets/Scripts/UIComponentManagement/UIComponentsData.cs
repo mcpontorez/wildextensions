@@ -13,6 +13,7 @@ namespace WildUI.UIComponents.Data
         public CanvasController canvas;
         public ButtonController button;
         public RectTransform panel;
+        public ListViewController listView;
 
         public void OnValidate()
         {

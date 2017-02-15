@@ -19,6 +19,9 @@ namespace WIldUI.Screens
 
             button.Text = "назад";
             button.OnClick += () => HideShow<MainMenuScreen>();
+
+            ListViewController listView = Object.Instantiate(UIComponentManager.Components.listView, Data.GetUIContainerRectTransform(UIContainerTag.Tag1), false);
+            listView.SetItems(UIComponentManager.Components.button, 10, (item, index) => { item.Text = index.ToString(); item.OnClick += () => Debug.Log(item.Text); });
         }
     }
 }
