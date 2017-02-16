@@ -1,6 +1,4 @@
 ﻿using InterfacesMB;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
@@ -24,7 +22,13 @@ namespace WildUI.UIComponents
         public event Action OnClick;
         void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
         {
-            OnClick();
+            if(OnClick != null)
+                OnClick();
+        }
+
+        public void ClearOnClick()
+        {
+            OnClick = null;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace WildUI.ScreenManagement
         {
             Data = Resources.Load<ScreenData>(DataPath);
             Data = Object.Instantiate(Data);
-
+            Data.gameObject.SetActive(false);
             Object.DontDestroyOnLoad(Data.gameObject);
 
             OnInit();
@@ -46,6 +46,7 @@ namespace WildUI.ScreenManagement
 
         void IScreen.Destroy()
         {
+            Hide();
             OnDestroy();
             Object.Destroy(Data.gameObject);
         }

@@ -1,36 +1,52 @@
-﻿using System.Collections;
+﻿using InterfacesMB;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using WildUI.UIHelpers;
 
 namespace WildUI.UIComponents
 {
-    public class ListViewController : UIMonoBehaviourBase
+    public class ListViewController : UIMonoBehaviourBase, IOnValidate
     {
         [SerializeField]
-        private RectTransform _content;
+        private ScrollRect _scrollRect;
 
         private List<UIMonoBehaviourBase> _items = new List<UIMonoBehaviourBase>();
+
+        public void OnValidate()
+        {
+            _scrollRect = GetComponent<ScrollRect>();
+        }
 
         public void SetItems<T>(T sampleItem, int count, System.Action<T, int> onItemInit) where T : UIMonoBehaviourBase
         {
             Clear();
-
+            
             for (int i = 0; i < count; i++)
             {
-                T item = Instantiate(sampleItem, _content, false);
+                T item = Instantiate(sampleItem, _scrollRect.content, false);
                 _items.Add(item);
                 onItemInit(item, i);
             }
+
+            ResetScrollPosition();
         }
 
         public void Clear()
         {
-            for (int i = _items.Count - 1; i >= 0; i--)
+            foreach (var item in _items)
             {
-                Destroy(_items[i]);
-                _items.RemoveAt(i);
+                Destroy(item.gameObject);
             }
+            _items.Clear();
+
+            ResetScrollPosition();
+        }
+
+        public void ResetScrollPosition()
+        {
+            _scrollRect.normalizedPosition = Vector2.one;
         }
     }
 }
