@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using WildUI.ScreenManagement;
 using WildUI.ScreenManagement.Data;
 using WildUI.UIComponents;
@@ -19,6 +20,9 @@ namespace WIldUI.Screens
 
             button.Text = "назад";
             button.OnClick += () => HideShow<MainMenuScreen>();
+
+            Text text = Object.Instantiate(UIComponentManager.Components.text, Data.GetUIContainerRectTransform(UIContainerTag.Tag3), false);
+            text.text = "сезончик";
 
             ListViewController listView = Object.Instantiate(UIComponentManager.Components.listView, Data.GetUIContainerRectTransform(UIContainerTag.Tag1), false);
             listView.SetItems(UIComponentManager.Components.button, 10, (item, index) => { item.Text = index.ToString(); item.OnClick += () => Debug.Log(item.Text); });

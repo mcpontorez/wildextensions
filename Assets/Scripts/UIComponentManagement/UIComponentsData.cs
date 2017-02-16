@@ -14,6 +14,7 @@ namespace WildUI.UIComponents.Data
         public ButtonController button;
         public RectTransform panel;
         public ListViewController listView;
+        public Text text;
 
         public void OnValidate()
         {
