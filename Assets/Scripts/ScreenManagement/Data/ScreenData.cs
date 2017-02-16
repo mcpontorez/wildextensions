@@ -76,11 +76,6 @@ namespace WildUI.ScreenManagement.Data
             return _uiContainers[containerTag];
         }
 
-        public RectTransform GetUIContainerRectTransform(UIContainerTag containerTag)
-        {
-            return GetUIContainer(containerTag).rectTransform;
-        }
-
         public void Awake()
         {
             foreach (var item in _uiContainerDatas)

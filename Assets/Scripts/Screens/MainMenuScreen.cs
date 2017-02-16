@@ -15,14 +15,14 @@ namespace WIldUI.Screens
         {
             base.OnInit();
 
-            ButtonController button = Object.Instantiate(UIComponentManager.Components.button, Data.GetUIContainerRectTransform(UIContainerTag.Tag1), false);
+            ButtonController button = CreateItem(UIComponentManager.Components.button, UIContainerTag.Tag1);
 
             button.Text = "играть";
             button.OnClick += () => HideShow<LevelsScreen>();
 
             for (int i = 0; i < 3; i++)
             {
-                button = Object.Instantiate(UIComponentManager.Components.button, Data.GetUIContainerRectTransform(UIContainerTag.Tag0), false);
+                button = CreateItem(UIComponentManager.Components.button, UIContainerTag.Tag0);
 
                 button.Text = "кнопка" + i;
                 int c = i;

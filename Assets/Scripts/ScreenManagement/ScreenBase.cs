@@ -51,5 +51,24 @@ namespace WildUI.ScreenManagement
         }
 
         protected virtual void OnDestroy() { }
+
+        #region InstantiateItem
+        /// <summary>
+        /// Создаёт го в UIContainer
+        /// </summary>
+        /// <returns>созданный объект</returns>
+        protected T CreateItem<T>(T sample, UIContainer container) where T : Component
+        {
+            return Object.Instantiate(sample, container.rectTransform, false);
+        }
+        /// <summary>
+        /// Создаёт го в UIContainer
+        /// </summary>
+        /// <returns>созданный объект</returns>
+        protected T CreateItem<T>(T sample, UIContainerTag containerTag) where T : Component
+        {
+            return CreateItem(sample, Data.GetUIContainer(containerTag));
+        }
+        #endregion
     }
 }

@@ -16,15 +16,15 @@ namespace WIldUI.Screens
         {
             base.OnInit();
 
-            ButtonController button = Object.Instantiate(UIComponentManager.Components.button, Data.GetUIContainerRectTransform(UIContainerTag.Tag0), false);
+            ButtonController button = CreateItem(UIComponentManager.Components.button, UIContainerTag.Tag0);
 
             button.Text = "назад";
             button.OnClick += () => HideShow<MainMenuScreen>();
 
-            Text text = Object.Instantiate(UIComponentManager.Components.text, Data.GetUIContainerRectTransform(UIContainerTag.Tag3), false);
+            Text text = CreateItem(UIComponentManager.Components.text, UIContainerTag.Tag3);
             text.text = "сезончик";
 
-            ListViewController listView = Object.Instantiate(UIComponentManager.Components.listView, Data.GetUIContainerRectTransform(UIContainerTag.Tag1), false);
+            ListViewController listView = CreateItem(UIComponentManager.Components.listView, UIContainerTag.Tag1);
             listView.SetItems(UIComponentManager.Components.button, 10, (item, index) => { item.Text = index.ToString(); item.OnClick += () => Debug.Log(item.Text); });
         }
     }
