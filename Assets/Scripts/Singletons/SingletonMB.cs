@@ -1,4 +1,4 @@
-﻿using UnityEngine;namespace Singleton
+﻿using UnityEngine;namespace Wild.Singletons
 {
     public abstract class SingletonMB<T> : MonoBehaviour where T : SingletonMB<T>
     {
@@ -23,7 +23,7 @@
         }
         /// <summary>
         /// Использовать для инициализации объекта синглотона, например загрузки из ScriptableObject нужных данных
-        /// </summary>        protected abstract void Initialize();
+        /// </summary>        protected virtual void Initialize() { }
         /// <summary>
         /// Использовать для создания объекта синглотона до первого обращения к Instance
         /// </summary>

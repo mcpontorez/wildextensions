@@ -3,6 +3,7 @@ using UnityEngine;
 using WildUI.ScreenManagement;
 using WildUI.ScreenManagement.Data;
 using WildUI.UIComponents;
+using WildUI.UIComponents.Data;
 using WildUI.UIComponents.Management;
 
 namespace WIldUI.Screens
@@ -15,7 +16,7 @@ namespace WIldUI.Screens
         {
             base.OnInit();
 
-            ButtonController button = CreateItem(UIComponentManager.Components.button, UIContainerTag.Tag1);
+            ButtonController button = CreateItem(UIComponentsData2.Instance.button, UIContainerTag.Tag1);
 
             button.Text = "играть";
             button.OnClick += () => HideShow<LevelsScreen>();
