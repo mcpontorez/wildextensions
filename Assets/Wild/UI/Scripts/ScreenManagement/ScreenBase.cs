@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Wild.UI.ScreenManagement.Data;
 
 namespace Wild.UI.ScreenManagement
