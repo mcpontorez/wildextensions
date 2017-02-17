@@ -1,4 +1,4 @@
-﻿namespace InterfacesMB
+﻿namespace Wild.InterfacesMB
 {
     public interface IUpdate
     {

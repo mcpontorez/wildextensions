@@ -1,4 +1,4 @@
-﻿using InterfacesMB;
+﻿using Wild.InterfacesMB;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;

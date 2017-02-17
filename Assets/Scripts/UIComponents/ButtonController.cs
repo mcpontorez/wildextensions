@@ -1,4 +1,4 @@
-﻿using InterfacesMB;
+﻿using Wild.InterfacesMB;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
