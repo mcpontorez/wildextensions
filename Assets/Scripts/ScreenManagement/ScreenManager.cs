@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace WildUI.ScreenManagement
 {
@@ -8,12 +9,24 @@ namespace WildUI.ScreenManagement
     {        
         static ScreenManager()
         {
-
+            GetEventSystem();
         }
         [RuntimeInitializeOnLoadMethod]
         private static void ShowScreenExample()
         {
             ShowScreen<WIldUI.Screens.MainMenuScreen>();
+        }
+
+        private static EventSystem _eventSystem;
+        public static EventSystem GetEventSystem()
+        {
+            if (!_eventSystem)
+            {
+                _eventSystem = Resources.Load<EventSystem>("ScreenManagement/EventSystem");
+                _eventSystem = Object.Instantiate(_eventSystem);
+                Object.DontDestroyOnLoad(_eventSystem.gameObject);
+            }
+            return _eventSystem;
         }
 
         private static Dictionary<System.Type, IScreen> _screens = new Dictionary<System.Type, IScreen>();
