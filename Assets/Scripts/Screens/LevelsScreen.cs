@@ -10,7 +10,7 @@ namespace WIldUI.Screens
 {
     class LevelsScreen : ScreenBase
     {
-        protected override string DataPath { get { return "Screens/LevelsScreen"; } }
+        protected override string DataPath { get { return "WildUI/Screens/LevelsScreen"; } }
 
         private ButtonController _leftButton;
         private ButtonController _rightButton;

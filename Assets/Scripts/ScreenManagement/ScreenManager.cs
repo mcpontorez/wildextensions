@@ -22,7 +22,7 @@ namespace WildUI.ScreenManagement
         {
             if (!_eventSystem)
             {
-                _eventSystem = Resources.Load<EventSystem>("ScreenManagement/EventSystem");
+                _eventSystem = Resources.Load<EventSystem>("WildUI/ScreenManagement/EventSystem");
                 _eventSystem = Object.Instantiate(_eventSystem);
                 Object.DontDestroyOnLoad(_eventSystem.gameObject);
             }

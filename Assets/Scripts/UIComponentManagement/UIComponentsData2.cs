@@ -23,7 +23,7 @@ namespace WildUI.UIComponents.Data
         {
             get
             {
-                return "UIComponentsData2";
+                return "WildUI/UIComponentsData2";
             }
         }
     }
