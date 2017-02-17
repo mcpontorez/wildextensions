@@ -9,7 +9,7 @@ namespace WIldUI.Screens
 {
     class MainMenuScreen : ScreenBase
     {
-        protected override string DataPath { get { return "MainMenuScreen"; } }
+        protected override string DataPath { get { return "Screens/MainMenuScreen"; } }
 
         protected override void OnInit()
         {
