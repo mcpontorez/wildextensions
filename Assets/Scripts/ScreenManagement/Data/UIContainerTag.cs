@@ -1,4 +1,4 @@
-﻿namespace WildUI.ScreenManagement.Data
+﻿namespace Wild.UI.ScreenManagement.Data
 {
     public enum UIContainerTag
     {

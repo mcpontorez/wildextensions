@@ -1,4 +1,4 @@
-﻿using UnityEngine;using System.Collections;namespace WildUI.UIHelpers{
+﻿using UnityEngine;namespace Wild.UI.Helpers{
     public class UIMonoBehaviourBase : MonoBehaviour, IUIMonoBehaviour
     {
         private RectTransform _rectTransform;

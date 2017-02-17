@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using WildUI.ScreenManagement;
-using WildUI.ScreenManagement.Data;
-using WildUI.UIComponents;
-using WildUI.UIComponents.Data;
-using WildUI.UIComponents.Management;
+using Wild.UI.ScreenManagement;
+using Wild.UI.ScreenManagement.Data;
+using Wild.UI.Components;
+using Wild.UI.Components.Data;
+using Wild.UI.Components.Management;
 
-namespace WIldUI.Screens
+namespace Wild.UI.Screens
 {
     class MainMenuScreen : ScreenBase
     {

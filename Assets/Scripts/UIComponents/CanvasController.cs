@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using WildUI.UIHelpers;
+﻿using UnityEngine;
+using Wild.UI.Helpers;
 
-namespace WildUI.UIComponents
+namespace Wild.UI.Components
 {
     public class CanvasController : UIMonoBehaviourBase
     {

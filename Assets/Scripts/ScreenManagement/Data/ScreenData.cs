@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using System;
 
-namespace WildUI.ScreenManagement.Data
+namespace Wild.UI.ScreenManagement.Data
 {
     public class ScreenData : MonoBehaviour, IOnValidate, IAwake
     {

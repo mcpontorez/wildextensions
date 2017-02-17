@@ -1,13 +1,8 @@
 ﻿using Wild.InterfacesMB;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using Wild.Singletons;
-using WildUI.UIHelpers;
-using System;
 
-namespace WildUI.UIComponents.Data
+namespace Wild.UI.Components.Data
 {
     [CreateAssetMenu(fileName = "UIComponentsData2", menuName = "WildUI/UIComponentsData2")]
     public class UIComponentsData2 : SingletonSO<UIComponentsData2>, IOnValidate

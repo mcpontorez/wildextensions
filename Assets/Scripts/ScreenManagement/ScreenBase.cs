@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using WildUI.ScreenManagement.Data;
+using Wild.UI.ScreenManagement.Data;
 
-namespace WildUI.ScreenManagement
+namespace Wild.UI.ScreenManagement
 {
     public abstract class ScreenBase : IScreen
     {

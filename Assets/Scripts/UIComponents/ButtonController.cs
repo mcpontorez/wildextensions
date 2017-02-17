@@ -3,9 +3,9 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using WildUI.UIHelpers;
+using Wild.UI.Helpers;
 
-namespace WildUI.UIComponents
+namespace Wild.UI.Components
 {
     public class ButtonController : UIMonoBehaviourBase, IOnValidate, IPointerClickHandler
     {

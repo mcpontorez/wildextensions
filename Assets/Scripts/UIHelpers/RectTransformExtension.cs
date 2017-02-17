@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace WildUI.UIHelpers
+namespace Wild.UI.Helpers
 {
     public static class RectTransformExtension
     {

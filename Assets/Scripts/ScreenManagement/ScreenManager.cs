@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace WildUI.ScreenManagement
+namespace Wild.UI.ScreenManagement
 {
     public static class ScreenManager
     {        
@@ -14,7 +14,7 @@ namespace WildUI.ScreenManagement
         [RuntimeInitializeOnLoadMethod]
         private static void ShowScreenExample()
         {
-            ShowScreen<WIldUI.Screens.MainMenuScreen>();
+            ShowScreen<Wild.UI.Screens.MainMenuScreen>();
         }
 
         private static EventSystem _eventSystem;

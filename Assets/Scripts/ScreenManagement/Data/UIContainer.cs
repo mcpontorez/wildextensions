@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using WildUI.UIHelpers;
+using Wild.UI.Helpers;
 
-namespace WildUI.ScreenManagement.Data
+namespace Wild.UI.ScreenManagement.Data
 {
     public class UIContainer : UIMonoBehaviourBase
     {

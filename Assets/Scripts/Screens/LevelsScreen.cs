@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using WildUI.ScreenManagement;
-using WildUI.ScreenManagement.Data;
-using WildUI.UIComponents;
-using WildUI.UIComponents.Management;
+using Wild.UI.ScreenManagement;
+using Wild.UI.ScreenManagement.Data;
+using Wild.UI.Components;
+using Wild.UI.Components.Management;
 
-namespace WIldUI.Screens
+namespace Wild.UI.Screens
 {
     class LevelsScreen : ScreenBase
     {

@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using WildUI.UIHelpers;
+using Wild.UI.Helpers;
 
-namespace WildUI.UIComponents
+namespace Wild.UI.Components
 {
     public class ListViewController : UIMonoBehaviourBase, IOnValidate
     {

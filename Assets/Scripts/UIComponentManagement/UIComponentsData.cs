@@ -1,11 +1,8 @@
 ﻿using Wild.InterfacesMB;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using WildUI.UIHelpers;
 
-namespace WildUI.UIComponents.Data
+namespace Wild.UI.Components.Data
 {
     [CreateAssetMenu(fileName = "UIComponentsData", menuName = "WildUI/UIComponentsData")]
     public class UIComponentsData : ScriptableObject, IOnValidate
