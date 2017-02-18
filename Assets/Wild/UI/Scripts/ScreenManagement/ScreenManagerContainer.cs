@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using Wild.InterfacesMB;
-using Wild.Singletons;
 
 namespace Wild.UI.ScreenManagement
 {

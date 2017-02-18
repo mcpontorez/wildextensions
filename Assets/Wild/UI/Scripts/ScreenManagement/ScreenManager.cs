@@ -15,12 +15,6 @@ namespace Wild.UI.ScreenManagement
             EventSystem.transform.SetParent(Container.SystemsContainer);
         }
 
-        [RuntimeInitializeOnLoadMethod]
-        private static void ShowScreenExample()
-        {
-            ShowScreen<Screens.MainMenuScreen>();
-        }
-
         private static ScreenManagerContainer Container { get; set; }
 
         private static EventSystem _eventSystem;
