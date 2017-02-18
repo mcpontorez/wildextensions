@@ -9,24 +9,33 @@ namespace Wild.UI.ScreenManagement
     {        
         static ScreenManager()
         {
-            GetEventSystem();
+            GameObject sm = new GameObject("ScreenManager");
+            Container = sm.AddComponent<ScreenManagerContainer>();
+
+            EventSystem.transform.SetParent(Container.SystemsContainer);
         }
+
         [RuntimeInitializeOnLoadMethod]
         private static void ShowScreenExample()
         {
-            ShowScreen<Wild.UI.Screens.MainMenuScreen>();
+            ShowScreen<Screens.MainMenuScreen>();
         }
 
+        private static ScreenManagerContainer Container { get; set; }
+
         private static EventSystem _eventSystem;
-        public static EventSystem GetEventSystem()
+        public static EventSystem EventSystem
         {
-            if (!_eventSystem)
+            get
             {
-                _eventSystem = Resources.Load<EventSystem>("WildUI/ScreenManagement/EventSystem");
-                _eventSystem = Object.Instantiate(_eventSystem);
-                Object.DontDestroyOnLoad(_eventSystem.gameObject);
+                if (!_eventSystem)
+                {
+                    _eventSystem = Resources.Load<EventSystem>("WildUI/ScreenManagement/EventSystem");
+                    _eventSystem = Object.Instantiate(_eventSystem);
+                    Object.DontDestroyOnLoad(_eventSystem.gameObject);
+                }
+                return _eventSystem;
             }
-            return _eventSystem;
         }
 
         private static Dictionary<System.Type, IScreen> _screens = new Dictionary<System.Type, IScreen>();
@@ -40,6 +49,7 @@ namespace Wild.UI.ScreenManagement
                 T screen = new T();
                 screen.Init();
                 _screens.Add(screenType, screen);
+                screen.Data.transform.SetParent(Container.ScreensContainer);
             }
 
             _screens[screenType].Show();

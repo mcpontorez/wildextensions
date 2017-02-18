@@ -7,7 +7,7 @@ namespace Wild.UI.ScreenManagement
     {
         protected abstract string DataPath { get; }
 
-        protected ScreenData Data { get; private set; }
+        public ScreenData Data { get; private set; }
 
         void IScreen.Init()
         {

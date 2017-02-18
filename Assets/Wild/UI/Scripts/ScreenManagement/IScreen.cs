@@ -1,7 +1,11 @@
-﻿namespace Wild.UI.ScreenManagement
+﻿using Wild.UI.ScreenManagement.Data;
+
+namespace Wild.UI.ScreenManagement
 {
     public interface IScreen
     {
+        ScreenData Data { get; }
+
         void Init();
 
         void Show();
