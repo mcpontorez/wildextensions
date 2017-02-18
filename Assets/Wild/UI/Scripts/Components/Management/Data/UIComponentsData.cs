@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Wild.UI.Components.Data
 {
-    [CreateAssetMenu(fileName = "UIComponentsData", menuName = "WildUI/UIComponentsData")]
+    [CreateAssetMenu(fileName = "UIComponentsData", menuName = "Wild/UI/UIComponentsData")]
     public class UIComponentsData : ScriptableObject, IOnValidate
     {
         public CanvasController canvas;
