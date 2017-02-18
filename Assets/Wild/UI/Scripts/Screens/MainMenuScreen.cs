@@ -8,7 +8,7 @@ using Wild.UI.Components.Management;
 
 namespace Wild.UI.Screens
 {
-    class MainMenuScreen : ScreenBase
+    public class MainMenuScreen : ScreenBase
     {
         protected override string DataPath { get { return "WildUI/Screens/MainMenuScreen"; } }
 

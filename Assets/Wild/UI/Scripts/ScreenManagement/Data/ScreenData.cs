@@ -4,11 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using System;
+using Wild.UI.Components;
 
 namespace Wild.UI.ScreenManagement.Data
 {
     public class ScreenData : MonoBehaviour, IOnValidate, IAwake
     {
+        [SerializeField]
+        private CanvasController _canvas;
+        public CanvasController Canvas { get { return _canvas; } }
+
         private Dictionary<UIContainerTag, UIContainer> _uiContainers = new Dictionary<UIContainerTag, UIContainer>();
 
         [SerializeField]
@@ -16,6 +21,8 @@ namespace Wild.UI.ScreenManagement.Data
 
         public void OnValidate()
         {
+            _canvas = GetComponentInChildren<CanvasController>();
+
             Dictionary<UIContainerTag, UIContainer> uiContainers = new Dictionary<UIContainerTag, UIContainer>();
 
             foreach (var item in _uiContainerDatas)

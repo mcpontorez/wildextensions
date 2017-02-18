@@ -75,7 +75,6 @@ GameObject:
   - component: {fileID: 224450579667459068}
   - component: {fileID: 222050367222950992}
   - component: {fileID: 114614808619931412}
-  - component: {fileID: 114006011697735072}
   m_Layer: 5
   m_Name: RootLayout
   m_TagString: Untagged
@@ -204,17 +203,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114006011697735072
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1515265460060886}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cd7b3e3414400d4a920687d0d6d1545, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114006501057470750
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -469,13 +457,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 730bc4938427d1c41a021da70542717e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canvas: {fileID: 114928354418988722}
   _uiContainerDatas:
   - _containerTag: 0
     _container: {fileID: 114189114896868724}
   - _containerTag: 1
     _container: {fileID: 114473382546433436}
-  - _containerTag: 2
-    _container: {fileID: 114006011697735072}
   - _containerTag: 3
     _container: {fileID: 114080326308920966}
   - _containerTag: 4

@@ -11,13 +11,19 @@ namespace Wild.UI.Components
     {
         [SerializeField]
         private Text _textComponent;
+        public Text TextComponent { get { return _textComponent;} }
+
+        [SerializeField]
+        private Button _buttonComponent;
+        public Button ButtonComponent { get { return _buttonComponent; } }
 
         public void OnValidate()
         {
+            _buttonComponent = GetComponent<Button>();
             _textComponent = GetComponentInChildren<Text>();
         }
 
-        public string Text { get { return _textComponent.text; } set { _textComponent.text = value; } }
+        public string Text { get { return TextComponent.text; } set { TextComponent.text = value; } }
 
         public event Action OnClick;
         void IPointerClickHandler.OnPointerClick(PointerEventData eventData)

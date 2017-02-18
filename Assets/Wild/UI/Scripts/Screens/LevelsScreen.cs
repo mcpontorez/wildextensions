@@ -8,12 +8,10 @@ using Wild.UI.Components.Management;
 
 namespace Wild.UI.Screens
 {
-    class LevelsScreen : ScreenBase
+    public class LevelsScreen : ScreenBase
     {
         protected override string DataPath { get { return "WildUI/Screens/LevelsScreen"; } }
 
-        private ButtonController _leftButton;
-        private ButtonController _rightButton;
         private ListViewController _levelList;
 
         protected override void OnInit()
@@ -24,16 +22,17 @@ namespace Wild.UI.Screens
             button.Text = "назад";
             button.OnClick += () => HideShow<MainMenuScreen>();
 
-            Text text = CreateItem(UIComponentManager.Components.text, UIContainerTag.Tag3);
-            text.text = "сезончик";
+            Text title = CreateItem(UIComponentManager.Components.text, UIContainerTag.Tag3);
+            title.text = "сезончик";
+            title.fontSize = 30;
 
-            _leftButton = CreateItem(UIComponentManager.Components.button, UIContainerTag.Tag4);
-            _leftButton.Text = "лево";
-            _leftButton.OnClick += UpdateLevelList;
+            ButtonController leftButton = CreateItem(UIComponentManager.Components.button, UIContainerTag.Tag4);
+            leftButton.Text = "лево";
+            leftButton.OnClick += UpdateLevelList;
 
-            _rightButton = CreateItem(UIComponentManager.Components.button, UIContainerTag.Tag5);
-            _rightButton.Text = "право";
-            _rightButton.OnClick += UpdateLevelList;
+            ButtonController rightButton = CreateItem(UIComponentManager.Components.button, UIContainerTag.Tag5);
+            rightButton.Text = "право";
+            rightButton.OnClick += UpdateLevelList;
 
             _levelList = CreateItem(UIComponentManager.Components.listView, UIContainerTag.Tag1);
             UpdateLevelList();

@@ -10,13 +10,14 @@ namespace Wild.UI.Components
     public class ListViewController : UIMonoBehaviourBase, IOnValidate
     {
         [SerializeField]
-        private ScrollRect _scrollRect;
+        private ScrollRect _scrollRectComponent;
+        public ScrollRect ScrollRectComponent { get; set; }
 
         private List<UIMonoBehaviourBase> _items = new List<UIMonoBehaviourBase>();
 
         public void OnValidate()
         {
-            _scrollRect = GetComponent<ScrollRect>();
+            _scrollRectComponent = GetComponent<ScrollRect>();
         }
 
         public void SetItems<T>(T sampleItem, int count, System.Action<T, int> onItemInit) where T : UIMonoBehaviourBase
@@ -25,7 +26,7 @@ namespace Wild.UI.Components
             
             for (int i = 0; i < count; i++)
             {
-                T item = Instantiate(sampleItem, _scrollRect.content, false);
+                T item = Instantiate(sampleItem, _scrollRectComponent.content, false);
                 _items.Add(item);
                 onItemInit(item, i);
             }
@@ -46,7 +47,7 @@ namespace Wild.UI.Components
 
         public void ResetScrollPosition()
         {
-            _scrollRect.normalizedPosition = Vector2.one;
+            _scrollRectComponent.normalizedPosition = Vector2.one;
         }
     }
 }
