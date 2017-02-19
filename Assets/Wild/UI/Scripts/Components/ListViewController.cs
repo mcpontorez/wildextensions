@@ -11,7 +11,7 @@ namespace Wild.UI.Components
     {
         [SerializeField]
         private ScrollRect _scrollRectComponent;
-        public ScrollRect ScrollRectComponent { get; set; }
+        public ScrollRect ScrollRectComponent { get { return _scrollRectComponent; } }
 
         private List<UIMonoBehaviourBase> _items = new List<UIMonoBehaviourBase>();
 

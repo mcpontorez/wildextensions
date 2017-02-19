@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 224372828371724780}
   - component: {fileID: 222001426864566932}
   - component: {fileID: 114692818703602470}
+  - component: {fileID: 114502041534654112}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -115,6 +116,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114502041534654112
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1827801188393974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93989fd0fba045f41bec9123d6c302cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _casing: 0
+  _textComponent: {fileID: 114692818703602470}
 --- !u!114 &114624987421733846
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -126,7 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948b60a80bcc17144b76af3ba255c96e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textComponent: {fileID: 114692818703602470}
+  _textComponent: {fileID: 114502041534654112}
+  _buttonComponent: {fileID: 114258156305972064}
 --- !u!114 &114692818703602470
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -140,7 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
