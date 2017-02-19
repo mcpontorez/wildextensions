@@ -22,9 +22,9 @@ namespace Wild.UI.Screens
             button.Text = "назад";
             button.OnClick += () => HideShow<MainMenuScreen>();
 
-            Text title = CreateItem(UIComponentManager.Components.text, UIContainerTag.Tag3);
-            title.text = "сезончик";
-            title.fontSize = 30;
+            TextController title = CreateItem(UIComponentManager.Components.text, UIContainerTag.Tag3);
+            title.Text = "сезончик";
+            title.TextComponent.fontSize = 30;
 
             ButtonController leftButton = CreateItem(UIComponentManager.Components.button, UIContainerTag.Tag4);
             leftButton.Text = "лево";

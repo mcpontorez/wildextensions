@@ -15,4 +15,4 @@ MonoBehaviour:
   button: {fileID: 114624987421733846, guid: 40ab232d8717f8f48bd296eea14b906e, type: 2}
   panel: {fileID: 224203730246501338, guid: 423f92d06ad3b85439f72c170f4ece40, type: 2}
   listView: {fileID: 114609184951845276, guid: c46f31851c7843940aa160a58be9cb9e, type: 2}
-  text: {fileID: 114374771531743988, guid: 30e5a9ec3a66539419618f7b94fd2406, type: 2}
+  text: {fileID: 114248769951873012, guid: 30e5a9ec3a66539419618f7b94fd2406, type: 2}

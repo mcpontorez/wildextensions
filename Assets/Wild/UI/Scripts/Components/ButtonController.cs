@@ -7,7 +7,7 @@ using Wild.UI.Helpers;
 
 namespace Wild.UI.Components
 {
-    public class ButtonController : UIMonoBehaviourBase, IOnValidate, IPointerClickHandler
+    public class ButtonController : UIMonoBehaviourBase, ILabel, IOnValidate, IPointerClickHandler
     {
         [SerializeField]
         private TextController _textComponent;
