@@ -13,6 +13,13 @@ namespace Wild.UI.ScreenManagement
             _container = container;
         }
 
+        public ScreenSystemManager(string name)
+        {
+            GameObject container = new GameObject(name);
+            UnityEngine.Object.DontDestroyOnLoad(container);
+            _container = container.transform;
+        }
+
         private Dictionary<Type, Component> _systems = new Dictionary<Type, Component>();
 
         public bool ContainsSystem<T>() where T : Component
@@ -65,11 +72,20 @@ namespace Wild.UI.ScreenManagement
         {
             Type systemType = typeof(T);
 
-            if (!_systems.ContainsKey(systemType))
+            if (!ContainsSystem(systemType))
                 return;
 
             Component system = _systems[systemType];
             UnityEngine.Object.Destroy(_systems[systemType].gameObject);
         }
+
+       public void Clear()
+       {
+            foreach (var system in _systems)
+            {
+                UnityEngine.Object.Destroy(system.Value.gameObject);
+            }
+            _systems.Clear();
+       }
     }
 }
