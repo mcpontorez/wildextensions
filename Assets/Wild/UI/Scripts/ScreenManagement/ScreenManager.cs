@@ -12,25 +12,15 @@ namespace Wild.UI.ScreenManagement
             GameObject sm = new GameObject("ScreenManager");
             Container = sm.AddComponent<ScreenManagerContainer>();
 
-            EventSystem.transform.SetParent(Container.SystemsContainer);
+            SystemManager = new ScreenSystemManager(Container.SystemsContainer);
+            EventSystem = SystemManager.LoadAndAddSystem<EventSystem>("WildUI/ScreenManagement/EventSystem");
         }
 
         private static ScreenManagerContainer Container { get; set; }
 
-        private static EventSystem _eventSystem;
-        public static EventSystem EventSystem
-        {
-            get
-            {
-                if (!_eventSystem)
-                {
-                    _eventSystem = Resources.Load<EventSystem>("WildUI/ScreenManagement/EventSystem");
-                    _eventSystem = Object.Instantiate(_eventSystem);
-                    Object.DontDestroyOnLoad(_eventSystem.gameObject);
-                }
-                return _eventSystem;
-            }
-        }
+        public static EventSystem EventSystem { get; private set; }
+
+        public static ScreenSystemManager SystemManager { get; private set; }
 
         private static Dictionary<System.Type, IScreen> _screens = new Dictionary<System.Type, IScreen>();
 
