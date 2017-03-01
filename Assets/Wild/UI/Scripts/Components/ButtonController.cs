@@ -10,8 +10,8 @@ namespace Wild.UI.Components
     public class ButtonController : UIMonoBehaviourBase, ILabel, IOnValidate, IPointerClickHandler
     {
         [SerializeField]
-        private TextController _textComponent;
-        public TextController TextComponent { get { return _textComponent;} }
+        private TextController _textController;
+        public TextController TextController { get { return _textController; } }
 
         [SerializeField]
         private Button _buttonComponent;
@@ -20,10 +20,10 @@ namespace Wild.UI.Components
         public void OnValidate()
         {
             _buttonComponent = GetComponent<Button>();
-            _textComponent = GetComponentInChildren<TextController>();
+            _textController = GetComponentInChildren<TextController>();
         }
 
-        public string Text { get { return TextComponent.Text; } set { TextComponent.Text = value; } }
+        public string Text { get { return TextController.Text; } set { TextController.Text = value; } }
 
         public event Action OnClick;
         void IPointerClickHandler.OnPointerClick(PointerEventData eventData)

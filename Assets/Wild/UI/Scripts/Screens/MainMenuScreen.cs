@@ -16,14 +16,17 @@ namespace Wild.UI.Screens
         {
             base.OnInit();
 
-            ButtonController button = CreateItem(UIComponentsData2.Instance.button, UIContainerTag.Tag1);
+            //ButtonController button = CreateItem(UIComponentsData2.Instance.button, UIContainerTag.Tag1);
 
-            button.Text = "играть";
-            button.OnClick += () => HideShow<LevelsScreen>();
+            //button.Text = "играть";
+            //button.OnClick += () => HideShow<LevelsScreen>();
+
+            ToggleController toggle = CreateItem(UIComponentManager.Components.toggle, UIContainerTag.Tag1);
+            toggle.OnValueChanged += (isOn) => Debug.Log(isOn); 
 
             for (int i = 0; i < 3; i++)
             {
-                button = CreateItem(UIComponentManager.Components.button, UIContainerTag.Tag0);
+                ButtonController button = CreateItem(UIComponentManager.Components.button, UIContainerTag.Tag0);
 
                 button.Text = "кнопка" + i;
                 int c = i;

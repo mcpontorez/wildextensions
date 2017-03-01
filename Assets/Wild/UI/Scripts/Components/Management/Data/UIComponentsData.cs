@@ -12,6 +12,7 @@ namespace Wild.UI.Components.Data
         public RectTransform panel;
         public ListViewController listView;
         public TextController text;
+        public ToggleController toggle;
 
         public void OnValidate()
         {

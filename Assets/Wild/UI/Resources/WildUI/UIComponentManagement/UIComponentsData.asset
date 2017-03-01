@@ -16,3 +16,4 @@ MonoBehaviour:
   panel: {fileID: 224203730246501338, guid: 423f92d06ad3b85439f72c170f4ece40, type: 2}
   listView: {fileID: 114609184951845276, guid: c46f31851c7843940aa160a58be9cb9e, type: 2}
   text: {fileID: 114248769951873012, guid: 30e5a9ec3a66539419618f7b94fd2406, type: 2}
+  toggle: {fileID: 114358268018845758, guid: 7a73a8953a113714893399ce6c4e5d85, type: 2}
