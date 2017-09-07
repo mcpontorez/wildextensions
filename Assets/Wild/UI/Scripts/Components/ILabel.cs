@@ -1,6 +1,6 @@
 ﻿namespace Wild.UI.Components
 {
-    interface ILabel
+    public interface ILabel
     {
         string Text { get; set; }
     }

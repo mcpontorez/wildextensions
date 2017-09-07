@@ -12,7 +12,7 @@ namespace Wild.UI.ScreenManagement.Data
     {
         [SerializeField]
         private CanvasController _canvas;
-        public CanvasController Canvas { get { return _canvas; } }
+        public CanvasController CanvasController { get { return _canvas; } }
 
         private Dictionary<UIContainerTag, UIContainer> _uiContainers = new Dictionary<UIContainerTag, UIContainer>();
 

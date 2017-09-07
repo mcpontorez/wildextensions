@@ -10,9 +10,10 @@ namespace Wild.UI.Components.Data
         public CanvasController canvas;
         public ButtonController button;
         public RectTransform panel;
-        public ListViewController listView;
+        public CollectionViewController collectionView;
         public TextController text;
         public ToggleController toggle;
+        public SliderController slider;
 
         public void OnValidate()
         {

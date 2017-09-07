@@ -12,7 +12,7 @@ namespace Wild.UI.Screens
     {
         protected override string DataPath { get { return "WildUI/Screens/LevelsScreen"; } }
 
-        private ListViewController _levelList;
+        private CollectionViewController _levelList;
 
         protected override void OnInit()
         {
@@ -34,15 +34,16 @@ namespace Wild.UI.Screens
             rightButton.Text = "право";
             rightButton.OnClick += UpdateLevelList;
 
-            _levelList = CreateItem(UIComponentManager.Components.listView, UIContainerTag.Tag1);
+            _levelList = CreateItem(UIComponentManager.Components.collectionView, UIContainerTag.Tag1);
             UpdateLevelList();
+            _levelList.CollectionGrouper.SetAsList(60f, 10f);
         }
 
         private void UpdateLevelList()
         {
-            _levelList.SetItems(UIComponentManager.Components.button, Random.Range(9, 100), (item, index) =>
+            _levelList.SetItems(UIComponentManager.Components.toggle, Random.Range(9, 100), (item, index) =>
             {
-                item.Text = index.ToString(); item.OnClick += () => Debug.Log(item.Text);
+                item.Text = index.ToString(); item.OnValueChanged += (a) => Debug.Log(item.Text + a);
             });
         }
     }

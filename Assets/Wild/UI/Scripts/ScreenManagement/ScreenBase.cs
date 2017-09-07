@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Wild.Generics;
 using Wild.UI.ScreenManagement.Data;
 
 namespace Wild.UI.ScreenManagement
@@ -9,13 +10,16 @@ namespace Wild.UI.ScreenManagement
 
         public ScreenData Data { get; private set; }
 
-        void IScreen.Init()
+        protected ScreenBase()
         {
             Data = Resources.Load<ScreenData>(DataPath);
             Data = Object.Instantiate(Data);
-            Data.gameObject.SetActive(false);
             Object.DontDestroyOnLoad(Data.gameObject);
+            Data.gameObject.SetActive(false);
+        }
 
+        void IScreen.Init()
+        {
             OnInit();
         }
 
@@ -32,15 +36,30 @@ namespace Wild.UI.ScreenManagement
         public void Hide()
         {
             Data.gameObject.SetActive(false);
+
             OnHide();
         }
 
-        protected virtual void OnHide() { }
+        protected virtual void OnHide()
+        {
+            ResetCurrentSelectedGameObject();
+        }
 
-        protected void HideShow<T>() where T : IScreen, new()
+        protected T HideShow<T>() where T : IScreen, new()
         {
             Hide();
-            ScreenManager.ShowScreen<T>();
+            return ScreenManager.ShowScreen<T>();
+        }
+
+        protected IScreen HideShow<T>(IGenericNewTypeContainer<T> screenTypeContainer) where T : IScreen
+        {
+            Hide();
+            return ScreenManager.ShowScreen(screenTypeContainer);
+        }
+
+        protected T ShowUp<T>() where T : IScreen, new()
+        {
+            return ScreenManager.ShowScreen<T>(Data.CanvasController.CanvasComponent.sortingOrder + 1);
         }
 
         void IScreen.Destroy()
@@ -62,7 +81,7 @@ namespace Wild.UI.ScreenManagement
             return Object.Instantiate(sample, container.rectTransform, false);
         }
         /// <summary>
-        /// Создаёт го в UIContainer
+        /// Создаёт GO в UIContainer
         /// </summary>
         /// <returns>созданный объект</returns>
         protected T CreateItem<T>(T sample, UIContainerTag containerTag) where T : Component
@@ -70,5 +89,28 @@ namespace Wild.UI.ScreenManagement
             return CreateItem(sample, Data.GetUIContainer(containerTag));
         }
         #endregion
+
+        protected virtual GameObject ShowedSelectedGameObject { get; set; }
+
+        protected void SetShowedSelectedGameObject<TComponent>(TComponent component) where TComponent : Component
+        {
+            ShowedSelectedGameObject = component.gameObject;
+        }
+
+        protected GameObject CurrentSelectedGameObject
+        {
+            get { return ScreenManager.EventSystem.currentSelectedGameObject; }
+            set { ScreenManager.EventSystem.SetSelectedGameObject(value); }
+        }
+
+        protected void SetSelectedGameObject<TComponent>(TComponent component) where TComponent : Component
+        {
+            CurrentSelectedGameObject = component.gameObject;
+        }
+
+        protected void ResetCurrentSelectedGameObject()
+        {
+            CurrentSelectedGameObject = null;
+        }
     }
 }

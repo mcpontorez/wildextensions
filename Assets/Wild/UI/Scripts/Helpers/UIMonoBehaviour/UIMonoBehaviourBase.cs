@@ -1,4 +1,5 @@
-﻿using UnityEngine;namespace Wild.UI.Helpers{
+﻿using System;
+using UnityEngine;namespace Wild.UI.Helpers{
     public class UIMonoBehaviourBase : MonoBehaviour, IUIMonoBehaviour
     {
         private RectTransform _rectTransform;
@@ -10,6 +11,15 @@
                     _rectTransform = (RectTransform)transform;
                 return _rectTransform;
             }
+        }
+        /// <summary>
+        /// Использовать для подготовки объекта к уничтожению. Например отписка от событий
+        /// </summary>
+        public event Action OnPrepareToDestoy;
+        protected virtual void OnDestroy()
+        {
+            if (OnPrepareToDestoy != null)
+                OnPrepareToDestoy();
         }
     }
 }

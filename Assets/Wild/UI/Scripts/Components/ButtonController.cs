@@ -1,13 +1,9 @@
-﻿using Wild.InterfacesMB;
-using UnityEngine;
-using System;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using Wild.UI.Helpers;
 
 namespace Wild.UI.Components
 {
-    public class ButtonController : UIMonoBehaviourBase, ILabel, IOnValidate, IPointerClickHandler
+    public class ButtonController : Clickable, IButton
     {
         [SerializeField]
         private TextController _textController;
@@ -17,24 +13,12 @@ namespace Wild.UI.Components
         private Button _buttonComponent;
         public Button ButtonComponent { get { return _buttonComponent; } }
 
-        public void OnValidate()
+        protected virtual void OnValidate()
         {
             _buttonComponent = GetComponent<Button>();
             _textController = GetComponentInChildren<TextController>();
         }
 
-        public string Text { get { return TextController.Text; } set { TextController.Text = value; } }
-
-        public event Action OnClick;
-        void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
-        {
-            if(OnClick != null)
-                OnClick();
-        }
-
-        public void ClearOnClick()
-        {
-            OnClick = null;
-        }
+        public virtual string Text { get { return TextController.Text; } set { TextController.Text = value; } }
     }
 }

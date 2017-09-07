@@ -5,6 +5,7 @@ using Wild.UI.ScreenManagement.Data;
 using Wild.UI.Components;
 using Wild.UI.Components.Data;
 using Wild.UI.Components.Management;
+using Wild.UI.MessageBoxes;
 
 namespace Wild.UI.Screens
 {
@@ -16,21 +17,26 @@ namespace Wild.UI.Screens
         {
             base.OnInit();
 
-            //ButtonController button = CreateItem(UIComponentsData2.Instance.button, UIContainerTag.Tag1);
-
-            //button.Text = "играть";
-            //button.OnClick += () => HideShow<LevelsScreen>();
-
             ToggleController toggle = CreateItem(UIComponentManager.Components.toggle, UIContainerTag.Tag1);
-            toggle.OnValueChanged += (isOn) => Debug.Log(isOn); 
+            toggle.OnValueChanged += (isOn) => Debug.Log(isOn);
+
+            ButtonController button = CreateItem(UIComponentsData2.Instance.button, UIContainerTag.Tag0);
+            button.Text = "играть";
+            button.OnClick += () => HideShow<LevelsScreen>();
 
             for (int i = 0; i < 3; i++)
             {
-                ButtonController button = CreateItem(UIComponentManager.Components.button, UIContainerTag.Tag0);
+                button = CreateItem(UIComponentManager.Components.button, UIContainerTag.Tag0);
 
                 button.Text = "кнопка" + i;
                 int c = i;
-                button.OnClick += () => Debug.Log("кнопка" + c);
+                button.OnClick += () =>
+                {
+                    Hide();
+                    IMessageBox messagebox = new SimpleMessageBox("Вы уверены?" + c, ScreenManager.Container.ScreensContainer);
+                    messagebox.AddButton("показать уровни", () => ScreenManager.ShowScreen<LevelsScreen>(), true);
+                    messagebox.AddButton("вернуться", () => ScreenManager.ShowScreen<MainMenuScreen>());
+                };
             }
         }
     }
