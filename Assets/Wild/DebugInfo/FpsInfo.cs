@@ -1,26 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 namespace Wild.DebugInfo
 {
     public class FpsInfo
     {
-        public FpsInfo(uint maxFpsNumber)
+        public FpsInfo(int maxFpsNumber = 60, Func<int, int, string> getFullInfoTemplate = null)
         {
-            _maxFPSNumber = Convert.ToInt32(maxFpsNumber);
+            if (maxFpsNumber < 0)
+                throw new ArgumentException($"{nameof(maxFpsNumber)} cannot be less than zero", nameof(maxFpsNumber));
 
-            for (uint i = 0; i <= maxFpsNumber; i++)
+            MaxFPSNumber = maxFpsNumber;
+            _fpsTexts = new string[MaxFPSNumber + 1];
+
+            if(getFullInfoTemplate == null)
+                getFullInfoTemplate = (fpsCount, ms) => new StringBuilder(14).Append("FPS ").Append(fpsCount).Append("  ").Append(ms).Append("ms").ToString();
+
+
+            StringBuilder fpsText = new StringBuilder(12);
+            for (int i = 0; i < _fpsTexts.Length; i++)
             {
-                string ms = Mathf.RoundToInt(_second / (i > 0 ? i : 1) * 1000).ToString();
-                _fpsTexts.Add("FPS " + i + "  " + ms + "ms");
+                fpsText.Clear();
+                int ms = Mathf.RoundToInt(_second / (i > 0 ? i : 1) * 1000);
+                _fpsTexts[i] = getFullInfoTemplate(i, ms);
             }
         }
 
         private const float _second = 1f;
 
-        private int _maxFPSNumber;
-        private List<string> _fpsTexts = new List<string>();
+        public int MaxFPSNumber { get; private set; }
+        private string[] _fpsTexts;
 
         public float RawFPS { get { return _second / Time.unscaledDeltaTime; } }
 
@@ -31,7 +42,7 @@ namespace Wild.DebugInfo
             get
             {
                 int fps = FPS;
-                return _maxFPSNumber > fps ? _fpsTexts[fps] : _fpsTexts[_maxFPSNumber];
+                return MaxFPSNumber > fps ? _fpsTexts[fps] : _fpsTexts[MaxFPSNumber];
             }
         }
     }
