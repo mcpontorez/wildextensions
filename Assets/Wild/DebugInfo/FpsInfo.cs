@@ -18,11 +18,8 @@ namespace Wild.DebugInfo
             if(getFullInfoTemplate == null)
                 getFullInfoTemplate = (fpsCount, ms) => new StringBuilder(14).Append("FPS ").Append(fpsCount).Append("  ").Append(ms).Append("ms").ToString();
 
-
-            StringBuilder fpsText = new StringBuilder(12);
             for (int i = 0; i < _fpsTexts.Length; i++)
             {
-                fpsText.Clear();
                 int ms = Mathf.RoundToInt(_second / (i > 0 ? i : 1) * 1000);
                 _fpsTexts[i] = getFullInfoTemplate(i, ms);
             }
@@ -33,15 +30,15 @@ namespace Wild.DebugInfo
         public int MaxFPSNumber { get; private set; }
         private string[] _fpsTexts;
 
-        public float RawFPS { get { return _second / Time.unscaledDeltaTime; } }
+        public float RawFps { get { return _second / Time.unscaledDeltaTime; } }
 
-        public int FPS { get { return Mathf.RoundToInt(RawFPS); } }
+        public int Fps { get { return Mathf.RoundToInt(RawFps); } }
 
         public string FullInfo
         {
             get
             {
-                int fps = FPS;
+                int fps = Fps;
                 return MaxFPSNumber > fps ? _fpsTexts[fps] : _fpsTexts[MaxFPSNumber];
             }
         }
