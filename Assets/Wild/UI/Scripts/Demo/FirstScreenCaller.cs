@@ -8,10 +8,11 @@ namespace Wild.UI.Demo
 {
     public class FirstScreenCaller : MonoBehaviour, IStart
     {
-        private static IScreenManager _screenManager = new ScreenManager() { EventSystem = Resources.Load<EventSystem>("WildUI/ScreenManagement/EventSystem") };
         public void Start()
         {
-            _screenManager.ShowScreen<MainMenuScreen>();
+            IScreenManager screenManager = new ScreenManager();
+            screenManager.EventSystem = screenManager.SystemManager.LoadAndAddSystem<EventSystem>("WildUI/ScreenManagement/EventSystem");
+            screenManager.ShowScreen<MainMenuScreen>();
         }
     }
 }
