@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Wild.Generics;
@@ -7,26 +6,26 @@ using Wild.Systems.Management;
 
 namespace Wild.UI.ScreenManagement
 {
-    public static class ScreenManager
-    {        
-        static ScreenManager()
+    public class ScreenManager : IScreenManager
+    {
+        public ScreenManager()
         {
             GameObject sm = new GameObject("ScreenManager");
             Container = sm.AddComponent<ScreenManagerContainer>();
 
             SystemManager = new SystemManager(Container.SystemsContainer);
-            EventSystem = SystemManager.LoadAndAddSystem<EventSystem>("WildUI/ScreenManagement/EventSystem");
+            //EventSystem = SystemManager.LoadAndAddSystem<EventSystem>("WildUI/ScreenManagement/EventSystem");
         }
 
-        public static ScreenManagerContainer Container { get; private set; }
+        public ScreenManagerContainer Container { get; private set; }
 
-        public static EventSystem EventSystem { get; private set; }
+        public EventSystem EventSystem { get; set; }
 
-        public static SystemManager SystemManager { get; private set; }
+        public SystemManager SystemManager { get; private set; }
 
-        private static Dictionary<System.Type, IScreen> _screens = new Dictionary<System.Type, IScreen>();
+        private Dictionary<System.Type, IScreen> _screens = new Dictionary<System.Type, IScreen>();
 
-        public static TScreen ShowScreen<TScreen>(int? sortOrder = null) where TScreen : IScreen, new()
+        public TScreen ShowScreen<TScreen>(int? sortOrder = null) where TScreen : IScreen, new()
         {
             System.Type screenType = typeof(TScreen);
 
@@ -34,7 +33,7 @@ namespace Wild.UI.ScreenManagement
 
             if (!_screens.ContainsKey(screenType))
             {
-                screen = new TScreen();
+                screen = new TScreen() { ScreenManager = this };
                 _screens.Add(screenType, screen);
                 screen.Data.transform.SetParent(Container.ScreensContainer);
                 screen.Init();
@@ -50,7 +49,7 @@ namespace Wild.UI.ScreenManagement
             return screen;
         }
 
-        public static TScreen ShowScreen<TScreen>(IGenericNewTypeContainer<TScreen> screenTypeContainer, int? sortOrder = null) where TScreen : IScreen
+        public TScreen ShowScreen<TScreen>(IGenericNewTypeContainer<TScreen> screenTypeContainer, int? sortOrder = null) where TScreen : IScreen
         {
             System.Type screenType = screenTypeContainer.GetGenericType();
 
@@ -59,6 +58,7 @@ namespace Wild.UI.ScreenManagement
             if (!_screens.ContainsKey(screenType))
             {
                 screen = (TScreen)System.Activator.CreateInstance(screenType);
+                screen.ScreenManager = this;
                 _screens.Add(screenType, screen);
                 screen.Data.transform.SetParent(Container.ScreensContainer);
                 screen.Init();
@@ -74,7 +74,7 @@ namespace Wild.UI.ScreenManagement
             return screen;
         }
 
-        public static void HideScreen<T>() where T: IScreen
+        public void HideScreen<T>() where T: IScreen
         {
             System.Type screenType = typeof(T);
 
@@ -82,7 +82,7 @@ namespace Wild.UI.ScreenManagement
                 _screens[screenType].Hide();
         }
 
-        public static void DestroyScreen<T>() where T : IScreen
+        public void DestroyScreen<T>() where T : IScreen
         {
             System.Type screenType = typeof(T);
 

@@ -1,5 +1,4 @@
-﻿using System;
-using Wild.Generics;
+﻿using Wild.Generics;
 
 namespace Wild.UI.ScreenManagement
 {

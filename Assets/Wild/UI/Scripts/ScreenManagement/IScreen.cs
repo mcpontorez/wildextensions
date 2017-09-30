@@ -6,6 +6,8 @@ namespace Wild.UI.ScreenManagement
     {
         ScreenData Data { get; }
 
+        IScreenManager ScreenManager { get; set; }
+
         void Init();
 
         void Show();

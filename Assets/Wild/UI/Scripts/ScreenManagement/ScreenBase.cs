@@ -10,6 +10,8 @@ namespace Wild.UI.ScreenManagement
 
         public ScreenData Data { get; private set; }
 
+        public IScreenManager ScreenManager { get; set; }
+
         protected ScreenBase()
         {
             Data = Resources.Load<ScreenData>(DataPath);
