@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Wild.Collections
 {
-    public static class IListExtension
+    public static class IListExtensions
     {
         public static T GetRandomItem<T>(this IList<T> source)
         {

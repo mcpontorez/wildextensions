@@ -6,20 +6,16 @@ namespace Wild.Systems.Management
 {
     public class SystemManager
     {
-        private Transform _container;
+        private readonly Transform _container;
 
         public SystemManager(Transform container)
         {
-            UnityEngine.Object.DontDestroyOnLoad(container);
             _container = container;
         }
 
         public SystemManager(string name = null)
         {
-            if (string.IsNullOrEmpty(name))
-                name = "SystemManager";
-
-            GameObject container = new GameObject(name);
+            GameObject container = new GameObject(name ?? nameof(SystemManager));
             UnityEngine.Object.DontDestroyOnLoad(container);
             _container = container.transform;
         }
@@ -27,16 +23,9 @@ namespace Wild.Systems.Management
         private Dictionary<Type, Component> _systems = new Dictionary<Type, Component>();
 
         public bool ContainsSystem<T>() where T : Component
-        {
-            Type systemType = typeof(T);
+            => ContainsSystem(typeof(T));
 
-            return ContainsSystem(systemType);
-        }
-
-        public bool ContainsSystem(Type systemType)
-        {
-            return _systems.ContainsKey(systemType);
-        }
+        public bool ContainsSystem(Type systemType) => _systems.ContainsKey(systemType);
 
         public T LoadAndAddSystem<T>(string path) where T : Component
         {
