@@ -6,7 +6,7 @@ using Wild.UI.Helpers;
 
 namespace Wild.UI.Components
 {
-    public class SliderController : Clickable, ILabel, IOnValidate, IAwake
+    public sealed class SliderController : Clickable, ISlider, IOnValidate, IAwake
     {
         public float Value { get { return SliderComponent.value; } set { SliderComponent.value = value; } }
         public event Action<float> OnValueChanged;
@@ -34,8 +34,7 @@ namespace Wild.UI.Components
 
         private void OnValueChange(float value)
         {
-            if (OnValueChanged != null)
-                OnValueChanged(value);
+            OnValueChanged?.Invoke(value);
         }
 
         public void ClearOnValueChanged()

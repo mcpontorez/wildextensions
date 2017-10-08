@@ -9,8 +9,7 @@ namespace Wild.UI.Components
         public event Action OnClick;
         public void InvokeOnCliсk()
         {
-            if (OnClick != null)
-                OnClick();
+            OnClick?.Invoke();
         }
         void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
         {
