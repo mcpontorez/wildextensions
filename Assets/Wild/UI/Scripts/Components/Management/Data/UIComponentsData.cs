@@ -1,6 +1,7 @@
 ﻿using Wild.InterfacesMB;
 using UnityEngine;
 using UnityEngine.UI;
+using Wild.UI.Components.Canvases;
 
 namespace Wild.UI.Components.Data
 {

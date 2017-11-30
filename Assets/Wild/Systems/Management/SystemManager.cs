@@ -30,8 +30,12 @@ namespace Wild.Systems.Management
         public T LoadAndAddSystem<T>(string path) where T : Component
         {
             T system = Resources.Load<T>(path);
-            system = UnityEngine.Object.Instantiate(system);
-            UnityEngine.Object.DontDestroyOnLoad(system.gameObject);
+            return CreateSystem(system);
+        }
+
+        public T CreateSystem<T>(T sampleSystem) where T : Component
+        {
+            T system = UnityEngine.Object.Instantiate(sampleSystem);
             AddSystem(system);
             return system;
         }

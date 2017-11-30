@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948b60a80bcc17144b76af3ba255c96e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textComponent: {fileID: 114502041534654112}
+  _textController: {fileID: 114502041534654112}
   _buttonComponent: {fileID: 114258156305972064}
 --- !u!114 &114692818703602470
 MonoBehaviour:

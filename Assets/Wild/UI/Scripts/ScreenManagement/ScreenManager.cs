@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Wild.Generics;
@@ -14,7 +15,6 @@ namespace Wild.UI.ScreenManagement
             Container = sm.AddComponent<ScreenManagerContainer>();
 
             SystemManager = new SystemManager(Container.SystemsContainer);
-            //EventSystem = SystemManager.LoadAndAddSystem<EventSystem>("WildUI/ScreenManagement/EventSystem");
         }
 
         public ScreenManagerContainer Container { get; private set; }
@@ -42,7 +42,7 @@ namespace Wild.UI.ScreenManagement
                 screen = (TScreen)_screens[screenType];
 
             if (sortOrder != null)
-                screen.Data.CanvasController.CanvasComponent.sortingOrder = (int)sortOrder;
+                screen.Data.CanvasController.Canvas.sortingOrder = (int)sortOrder;
 
             screen.Show();
 
@@ -67,30 +67,42 @@ namespace Wild.UI.ScreenManagement
                 screen = (TScreen)_screens[screenType];
 
             if (sortOrder != null)
-                screen.Data.CanvasController.CanvasComponent.sortingOrder = (int)sortOrder;
+                screen.Data.CanvasController.Canvas.sortingOrder = (int)sortOrder;
 
             screen.Show();
 
             return screen;
         }
 
-        public void HideScreen<T>() where T: IScreen
+        public void HideScreen<TScreen>() where TScreen: IScreen
         {
-            System.Type screenType = typeof(T);
+            System.Type screenType = typeof(TScreen);
 
             if (_screens.ContainsKey(screenType))
                 _screens[screenType].Hide();
         }
 
-        public void DestroyScreen<T>() where T : IScreen
+        public void DestroyScreen<TScreen>() where TScreen : IScreen
         {
-            System.Type screenType = typeof(T);
+            System.Type screenType = typeof(TScreen);
 
             if (!_screens.ContainsKey(screenType))
                 return;
 
             _screens[screenType].Destroy();
             _screens.Remove(screenType);
+        }
+
+        public void DestroyScreens<TScreenBase>() where TScreenBase : IScreen
+        {
+            System.Type screenBaseType = typeof(TScreenBase);
+            List<System.Type> screenTypes = _screens.Keys.Where(k => screenBaseType.IsAssignableFrom(k)).ToList();
+
+            foreach (var screenType in screenTypes)
+            {
+                _screens[screenType].Destroy();
+                _screens.Remove(screenType);
+            }
         }
     }
 }

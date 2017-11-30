@@ -39,7 +39,7 @@ namespace Wild.UI.Components.Pivots
         protected void SetTitleAsMainTitle(int index)
         {
             ButtonController title = _titles[index];
-            while(title.rectTransform.GetSiblingIndex() > 0)
+            while(title.RectTransform.GetSiblingIndex() > 0)
             {
                 Transform otherTitle = _titlesPanel.GetChild(0);
                 otherTitle.SetAsLastSibling();

@@ -63,6 +63,7 @@ namespace Wild.UI.Components
 
         public void ResetScrollPosition()
         {
+            if (_scrollRectComponent != null)
             _scrollRectComponent.normalizedPosition = Vector2.one;
         }
     }

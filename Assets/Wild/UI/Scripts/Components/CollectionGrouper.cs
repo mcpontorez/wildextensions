@@ -37,7 +37,7 @@ namespace Wild.UI.Components
         {
             OnRegroup += (gridLayoutGroup) =>
             {
-                float width = Scrollbar ? rectTransform.rect.width - Scrollbar.handleRect.rect.width * 2f : rectTransform.rect.width;
+                float width = Scrollbar ? RectTransform.rect.width - Scrollbar.handleRect.rect.width * 2f : RectTransform.rect.width;
                 gridLayoutGroup.cellSize = new Vector2(width, cellHeight);
                 gridLayoutGroup.spacing = new Vector2(0f, spacingVertical);
                 if (padding != null)

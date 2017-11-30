@@ -19,5 +19,6 @@ namespace Wild.UI.ScreenManagement
         void HideScreen<T>() where T : IScreen;
 
         void DestroyScreen<T>() where T : IScreen;
+        void DestroyScreens<TScreenBase>() where TScreenBase : IScreen;
     }
 }

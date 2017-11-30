@@ -47,7 +47,7 @@ namespace Wild.UI.ScreenManagement
             ResetCurrentSelectedGameObject();
         }
 
-        protected T HideShow<T>() where T : IScreen, new()
+        public T HideShow<T>() where T : IScreen, new()
         {
             Hide();
             return ScreenManager.ShowScreen<T>();
@@ -61,7 +61,7 @@ namespace Wild.UI.ScreenManagement
 
         protected T ShowUp<T>() where T : IScreen, new()
         {
-            return ScreenManager.ShowScreen<T>(Data.CanvasController.CanvasComponent.sortingOrder + 1);
+            return ScreenManager.ShowScreen<T>(Data.CanvasController.Canvas.sortingOrder + 1);
         }
 
         void IScreen.Destroy()
@@ -74,13 +74,17 @@ namespace Wild.UI.ScreenManagement
         protected virtual void OnDestroy() { }
 
         #region InstantiateItem
+        protected T CreateItem<T>(T sample, Transform container) where T : Component
+        {
+            return Object.Instantiate(sample, container, false);
+        }
         /// <summary>
         /// Создаёт го в UIContainer
         /// </summary>
         /// <returns>созданный объект</returns>
         protected T CreateItem<T>(T sample, UIContainer container) where T : Component
         {
-            return Object.Instantiate(sample, container.rectTransform, false);
+            return CreateItem(sample, container.RectTransform);
         }
         /// <summary>
         /// Создаёт GO в UIContainer

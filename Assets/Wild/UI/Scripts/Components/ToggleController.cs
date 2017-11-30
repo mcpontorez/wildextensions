@@ -34,8 +34,7 @@ namespace Wild.UI.Components
 
         private void OnValueChange(bool isOn)
         {
-            if (OnValueChanged != null)
-                OnValueChanged(isOn);
+            OnValueChanged?.Invoke(isOn);
         }
 
         public void ClearOnValueChanged()

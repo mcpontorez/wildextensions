@@ -10,22 +10,23 @@ namespace Wild.Systems
         public event Action OnFixedUpdated;
         public event Action OnLateUpdated;
 
-        private void Update()
-        {
-            if (OnUpdated != null)
-                OnUpdated();
-        }
+        private void Update() => OnUpdated?.Invoke();
 
-        private void LateUpdate()
-        {
-            if (OnLateUpdated != null)
-                OnLateUpdated();
-        }
+        private void LateUpdate() => OnLateUpdated?.Invoke();
 
-        private void FixedUpdate()
+        private void FixedUpdate() => OnFixedUpdated?.Invoke();
+
+        public void InvokeWithDelay(float delay, Action action) => StartCoroutine(Invoking(delay, false, action));
+        public void InvokeWithDelayRealtime(float delay, Action action) => StartCoroutine(Invoking(delay, true, action));
+
+        private IEnumerator Invoking(float delay, bool isRealtime, Action action)
         {
-            if (OnFixedUpdated != null)
-                OnFixedUpdated();
+            if (isRealtime)
+                yield return new WaitForSecondsRealtime(delay);
+            else
+                yield return new WaitForSeconds(delay);
+
+            action?.Invoke();
         }
 
         void IGameLogicUpdateSystem.StopCoroutine(IEnumerator routine)

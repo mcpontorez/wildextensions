@@ -9,6 +9,9 @@ namespace Wild.Systems
         event Action OnUpdated;
         event Action OnFixedUpdated;
         event Action OnLateUpdated;
+
+        void InvokeWithDelay(float delay, Action action);
+        void InvokeWithDelayRealtime(float delay, Action action);
         /// <summary>
         /// Проверяет себя != null и останавливает корутину
         /// </summary>

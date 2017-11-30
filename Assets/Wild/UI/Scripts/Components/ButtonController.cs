@@ -15,8 +15,7 @@ namespace Wild.UI.Components
 
         protected virtual void OnValidate()
         {
-            _buttonComponent = GetComponent<Button>();
-            _textController = GetComponentInChildren<TextController>();
+
         }
 
         public virtual string Text { get { return TextController.Text; } set { TextController.Text = value; } }

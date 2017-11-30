@@ -2,6 +2,6 @@
 {
     public interface IUIMonoBehaviour
     {
-        RectTransform rectTransform { get; }
+        RectTransform RectTransform { get; }
     }
 }

@@ -50,7 +50,7 @@ namespace Wild.UI.MessageBoxes
         /// <returns>созданный объект</returns>
         protected T CreateItem<T>(T sample, UIContainer container) where T : Component
         {
-            return Object.Instantiate(sample, container.rectTransform, false);
+            return Object.Instantiate(sample, container.RectTransform, false);
         }
         /// <summary>
         /// Создаёт GO в UIContainer

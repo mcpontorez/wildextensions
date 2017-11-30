@@ -1,10 +1,8 @@
 ﻿using Wild.InterfacesMB;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using System;
-using Wild.UI.Components;
+using Wild.UI.Components.Canvases;
 
 namespace Wild.UI.ScreenManagement.Data
 {
@@ -12,7 +10,7 @@ namespace Wild.UI.ScreenManagement.Data
     {
         [SerializeField]
         private CanvasController _canvas;
-        public CanvasController CanvasController { get { return _canvas; } }
+        public ICanvasController CanvasController { get { return _canvas; } }
 
         private Dictionary<UIContainerTag, UIContainer> _uiContainers = new Dictionary<UIContainerTag, UIContainer>();
 

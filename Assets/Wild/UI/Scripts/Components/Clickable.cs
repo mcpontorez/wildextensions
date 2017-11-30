@@ -7,7 +7,7 @@ namespace Wild.UI.Components
     public class Clickable : UIMonoBehaviourBase, IClickable, IPointerClickHandler, ISubmitHandler
     {
         public event Action OnClick;
-        public void InvokeOnCliсk()
+        public virtual void InvokeOnCliсk()
         {
             OnClick?.Invoke();
         }
