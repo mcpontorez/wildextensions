@@ -13,11 +13,12 @@ namespace Wild.UI.Components
         private Button _buttonComponent;
         public Button ButtonComponent { get { return _buttonComponent; } }
 
-        protected virtual void OnValidate()
-        {
-
-        }
-
         public virtual string Text { get { return TextController.Text; } set { TextController.Text = value; } }
+
+        protected override void OnInteractableChanged(bool value)
+        {
+            base.OnInteractableChanged(value);
+            ButtonComponent.interactable = value;
+        }
     }
 }

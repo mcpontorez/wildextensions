@@ -16,13 +16,15 @@ using UnityEngine;namespace Wild.Singletons
                 T[] instances = FindObjectsOfType<T>();
                 if (instances.Length > 1)
                 {
-                    Exception exception = new Exception($"{typeof(T).FullName} must not have more than one copy on the stage!");
-                    Debug.LogException(exception);
+                    Exception exception = new Exception($"{typeof(T).FullName} must not have more than one instance on the stage!");
+                    //Debug.LogException(exception);
+                    throw exception;
                 }
                 else if (instances.Length < 1)
                 {
-                    ArgumentNullException exception = new ArgumentNullException($"{typeof(T).FullName} must not have more than one copy on the stage!");
-                    Debug.LogException(exception);
+                    ArgumentNullException exception = new ArgumentNullException($"{typeof(T).FullName} must not have less than one instance on the stage!");
+                    //Debug.LogException(exception);
+                    throw exception;
                 }
                 _instance = instances[0];
                 DontDestroyOnLoad(_instance);

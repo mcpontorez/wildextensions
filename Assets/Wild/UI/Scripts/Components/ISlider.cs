@@ -7,6 +7,8 @@ namespace Wild.UI.Components
         float Value { get; set; }
         event Action<float> OnValueChanged;
 
+        IManipulable SliderManipulable { get; }
+
         void ClearOnValueChanged();
     }
 }

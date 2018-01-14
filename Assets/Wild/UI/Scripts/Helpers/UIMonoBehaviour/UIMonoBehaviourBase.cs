@@ -12,6 +12,12 @@ using UnityEngine;namespace Wild.UI.Helpers{
                 return _rectTransform;
             }
         }
+
+        protected virtual void OnValidate()
+        {
+
+        }
+
         /// <summary>
         /// Использовать для подготовки объекта к уничтожению. Например отписка от событий
         /// </summary>

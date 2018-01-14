@@ -53,7 +53,7 @@ namespace Wild.UI.ScreenManagement
             return ScreenManager.ShowScreen<T>();
         }
 
-        protected IScreen HideShow<T>(IGenericNewTypeContainer<T> screenTypeContainer) where T : IScreen
+        protected T HideShow<T>(IGenericNewTypeContainer<T> screenTypeContainer) where T : IScreen
         {
             Hide();
             return ScreenManager.ShowScreen(screenTypeContainer);
