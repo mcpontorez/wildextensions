@@ -1,12 +1,11 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
-using Wild.InterfacesMB;
 using Wild.UI.Helpers;
 
 namespace Wild.UI.Components
 {
-    public class ToggleController : UIMonoBehaviourBase, IOnValidate, ILabel, IAwake
+    public class ToggleController : UIMonoBehaviourBase, ILabel
     {
         public bool IsOn { get { return TogleComponent.isOn; } set { TogleComponent.isOn = value; } }
         public event Action<bool> OnValueChanged;
@@ -21,13 +20,13 @@ namespace Wild.UI.Components
 
         public string Text { get { return TextController.Text; } set { TextController.Text = value; } }
 
-        public void OnValidate()
+        protected override void OnValidate()
         {
             _togleComponent = GetComponent<Toggle>();
             _textController = GetComponentInChildren<TextController>();
         }
 
-        public void Awake()
+        private void Awake()
         {
             _togleComponent.onValueChanged.AddListener(OnValueChange);
         }
@@ -41,6 +40,13 @@ namespace Wild.UI.Components
         {
             OnValueChanged = null;
             _togleComponent.onValueChanged.RemoveAllListeners();
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+
+            _togleComponent.onValueChanged.AddListener(OnValueChange);
         }
     }
 }

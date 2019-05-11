@@ -8,9 +8,16 @@ namespace Wild.UI.Components
 {
     public sealed class SliderController : Clickable, ISlider
     {
-        private bool _needsEvent = true;
+        private bool _needsValueChangedInvokeEvent = true;
 
-        public float Value { get { return SliderComponent.value; } set { _needsEvent = false;  SliderComponent.value = value; } }
+        public float Value { get { return SliderComponent.value; } set { SetValue(value, false); } }
+
+        public void SetValue(float value, bool needsValueChangedInvokeEvent = true)
+        {
+            _needsValueChangedInvokeEvent = needsValueChangedInvokeEvent;
+            SliderComponent.value = value;
+        }
+
         public event Action<float> OnValueChanged;       
 
         [SerializeField]
@@ -27,7 +34,7 @@ namespace Wild.UI.Components
 
         public string Text { get { return TextController.Text; } set { TextController.Text = value; } }
 
-        private void OnValidate()
+        protected override void OnValidate()
         {
             _sliderComponent = GetComponentInChildren<Slider>();
             _textController = GetComponentInChildren<TextController>();
@@ -40,9 +47,9 @@ namespace Wild.UI.Components
 
         private void OnValueChange(float value)
         {
-            if(_needsEvent)
+            if(_needsValueChangedInvokeEvent)
                 OnValueChanged?.Invoke(value);
-            _needsEvent = true;
+            _needsValueChangedInvokeEvent = true;
         }
 
         public void ClearOnValueChanged()

@@ -1,14 +1,19 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Wild.UI.Components
 {
     public interface ICollectionView
     {
-        void SetItems<T>(T sampleItem, int count, System.Action<T, int> onItemInit) where T : Component;
+        IReadOnlyList<Transform> Items { get; }
+        IReadOnlyList<TItem> GetItems<TItem>();
 
-        void AddItem<T>(T item) where T : Component;
+        void SetItems<TItem>(TItem sampleItem, int count, CollectionItemEventHandler<TItem> onItemInit = null) where TItem : Component;
 
-        T CreateItem<T>(T sampleItem) where T : Component;
+        void AddItem<TItem>(TItem item) where TItem : Component;
+
+        TItem CreateItem<TItem>(TItem sampleItem) where TItem : Component;
 
         void Clear();
     }

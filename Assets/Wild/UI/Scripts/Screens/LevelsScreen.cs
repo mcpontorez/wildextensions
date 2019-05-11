@@ -41,9 +41,9 @@ namespace Wild.UI.Screens
 
         private void UpdateLevelList()
         {
-            _levelList.SetItems(UIComponentManager.Components.toggle, Random.Range(9, 100), (item, index) =>
+            _levelList.SetItems(UIComponentManager.Components.toggle, Random.Range(9, 100), (sender, args) =>
             {
-                item.Text = index.ToString(); item.OnValueChanged += (a) => Debug.Log(item.Text + a);
+                args.Item.Text = args.Index.ToString(); args.Item.OnValueChanged += (a) => Debug.Log(args.Item.Text + a);
             });
         }
     }

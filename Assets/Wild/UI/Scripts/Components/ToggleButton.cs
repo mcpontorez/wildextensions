@@ -28,11 +28,12 @@ namespace Wild.UI.Components
                 OnValueChanged?.Invoke(_isOn);
         }
 
-        public override void InvokeOnCliсk()
+        public override void InvokeOnCliсk(int clickCount)
         {
-            base.InvokeOnCliсk();
+            base.InvokeOnCliсk(clickCount);
 
-            SetIsOn(!IsOn, true);
+            if(clickCount == 1)
+                SetIsOn(!IsOn, true);
         }
     }
 }

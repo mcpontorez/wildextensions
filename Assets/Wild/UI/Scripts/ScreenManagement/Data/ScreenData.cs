@@ -9,6 +9,10 @@ namespace Wild.UI.ScreenManagement.Data
     public class ScreenData : MonoBehaviour, IOnValidate, IAwake
     {
         [SerializeField]
+        private ScreenBehaviourBase _screenBehaviour;
+        public ScreenBehaviourBase ScreenBehaviour => _screenBehaviour;
+
+        [SerializeField]
         private CanvasController _canvas;
         public ICanvasController CanvasController { get { return _canvas; } }
 
@@ -88,27 +92,5 @@ namespace Wild.UI.ScreenManagement.Data
                 _uiContainers.Add(item.ContainerTag, item.Container);
             }
         }
-
-        //[SerializeField]
-        //private List<UIContainer> _uiContainers = new List<UIContainer>();
-
-        //public void OnValidate()
-        //{
-        //    _uiContainers.Clear();
-        //    _uiContainers = GetComponentsInChildren<UIContainer>(true).ToList();
-        //}
-
-        //public UIContainer GetUIContainer(int id)
-        //{
-        //    if (id > _uiContainers.Count - 1)
-        //        return null;
-
-        //    return _uiContainers[id];
-        //}
-
-        //public RectTransform GetUIContainerRectTransform(int id)
-        //{
-        //    return GetUIContainer(id).rectTransform;
-        //}
     }
 }

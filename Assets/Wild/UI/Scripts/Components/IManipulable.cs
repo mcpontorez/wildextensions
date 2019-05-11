@@ -7,8 +7,9 @@ namespace Wild.UI.Components
     {
         bool IsDragged { get; }
 
-        bool IsDowned { get; }
+        bool IsPointerDowned { get; }
         event Action OnPointerDown;
+        event Action OnPointerDowned;
         event Action OnPointerUp;
 
         bool IsPointerOver { get; }

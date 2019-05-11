@@ -18,14 +18,17 @@ using UnityEngine;namespace Wild.UI.Helpers{
 
         }
 
+        protected virtual void Start() { }
+
+        protected virtual void Awake() { }
+
         /// <summary>
         /// Использовать для подготовки объекта к уничтожению. Например отписка от событий
         /// </summary>
         public event Action OnPrepareToDestoy;
         protected virtual void OnDestroy()
         {
-            if (OnPrepareToDestoy != null)
-                OnPrepareToDestoy();
+            OnPrepareToDestoy?.Invoke();
         }
     }
 }

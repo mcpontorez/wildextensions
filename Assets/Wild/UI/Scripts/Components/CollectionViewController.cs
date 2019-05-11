@@ -5,7 +5,7 @@ using Wild.UI.Helpers;
 
 namespace Wild.UI.Components
 {
-    public class CollectionViewController : UIMonoBehaviourBase, ICollectionView
+    public sealed class CollectionViewController : UIMonoBehaviourBase, ICollectionView
     {
         [SerializeField]
         private ScrollRect _scrollRectComponent;
@@ -15,56 +15,54 @@ namespace Wild.UI.Components
         private CollectionGrouper _collectionGrouper;
         public CollectionGrouper CollectionGrouper { get { return _collectionGrouper; } }
 
-        private List<Component> _items = new List<Component>();
-
-        private void OnValidate()
+        private ICollectionView _collectionView;
+        private ICollectionView CollectionView
         {
-            _scrollRectComponent = GetComponent<ScrollRect>();
-            _collectionGrouper = GetComponentInChildren<CollectionGrouper>();
+            get
+            {
+                if(_collectionView == null)
+                    _collectionView = new CollectionView(ScrollRectComponent.content);
+                return _collectionView;
+            }
         }
 
-        public void SetItems<T>(T sampleItem, int count, System.Action<T, int> onItemInit) where T : Component
+        public IReadOnlyList<Transform> Items => CollectionView.Items;
+        public IReadOnlyList<TItem> GetItems<TItem>() => CollectionView.GetItems<TItem>();
+
+        protected override void OnValidate()
         {
-            Clear();
-            
-            for (int i = 0; i < count; i++)
-            {
-                T item = Instantiate(sampleItem);
-                AddItem(item);
-                onItemInit(item, i);
-            }
+            _scrollRectComponent = GetComponent<ScrollRect>() ?? _scrollRectComponent;
+            _collectionGrouper = GetComponentInChildren<CollectionGrouper>() ?? _collectionGrouper;
+        }
+
+        public void SetItems<TItem>(TItem sampleItem, int count, CollectionItemEventHandler<TItem> onItemInit = null) where TItem : Component
+        {
+            CollectionView.SetItems(sampleItem, count, onItemInit);
 
             ResetScrollPosition();
         }
 
         public void AddItem<T>(T item) where T : Component
         {
-            item.transform.SetParent(_scrollRectComponent.content, false);
-            _items.Add(item);
+            CollectionView.AddItem(item);
         }
 
         public T CreateItem<T>(T sampleItem) where T : Component
-        {
-            T item = Instantiate(sampleItem);
-            AddItem(item);
-            return item;
+        {            
+            return CollectionView.CreateItem(sampleItem);
         }
 
         public void Clear()
         {
-            foreach (var item in _items)
-            {
-                Destroy(item.gameObject);
-            }
-            _items.Clear();
+            CollectionView.Clear();
 
             ResetScrollPosition();
         }
 
         public void ResetScrollPosition()
         {
-            if (_scrollRectComponent != null)
-            _scrollRectComponent.normalizedPosition = Vector2.one;
+            if (ScrollRectComponent != null)
+                ScrollRectComponent.normalizedPosition = Vector2.one;
         }
     }
 }

@@ -7,7 +7,7 @@ using Wild.UI.Helpers;
 namespace Wild.UI.Components
 {
     [RequireComponent(typeof(GridLayoutGroup))]
-    public class CollectionGrouper : UIMonoBehaviourBase, IOnValidate, ILateUpdate
+    public class CollectionGrouper : UIMonoBehaviourBase
     {
         [SerializeField]
         private GridLayoutGroup _gridLayoutGroup;
@@ -17,17 +17,20 @@ namespace Wild.UI.Components
         private Scrollbar _scrollbar;
         public Scrollbar Scrollbar { get { return _scrollbar; } }
 
-        public void OnValidate()
+        protected override void OnValidate()
         {
+            base.OnValidate();
+
             _gridLayoutGroup = GetComponent<GridLayoutGroup>();
         }
 
-        public void SetAsGrid(Vector2 cellSize, Vector2 spacing, RectOffset padding = null)
+        public void SetAsGrid(Vector2 cellSize, Vector2? spacing = null, RectOffset padding = null)
         {
             OnRegroup += (gridLayoutGroup) =>
             {
                 gridLayoutGroup.cellSize = cellSize;
-                gridLayoutGroup.spacing = spacing;
+                if(spacing != null)
+                    gridLayoutGroup.spacing = spacing.Value;
                 if(padding != null)
                     gridLayoutGroup.padding = padding;
             };

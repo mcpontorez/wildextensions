@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using Wild.Coroutines;
 
 namespace Wild.Systems
 {
@@ -10,18 +11,20 @@ namespace Wild.Systems
         event Action OnFixedUpdated;
         event Action OnLateUpdated;
 
-        void InvokeWithDelay(float delay, Action action);
-        void InvokeWithDelayRealtime(float delay, Action action);
+        void Invoke(float delay, Action action);
+        void InvokeRealtimeDelay(float delay, Action action);
+        void Repeat(float repeatDelay, Action action, ICancellationToken cancellationToken);
+        void Repeat(float firstDelay, float repeatDelay, Action action, ICancellationToken cancellationToken);
         /// <summary>
         /// Проверяет себя != null и останавливает корутину
         /// </summary>
         /// <param name="routine"></param>
         void StopCoroutine(IEnumerator routine);
         /// <summary>
-        /// Проверяет себя != null и останавливает корутину
+        /// Проверяет себя и корутину != null и останавливает корутину
         /// </summary>
         /// <param name="routine"></param>
-        void StopCoroutine(Coroutine routine);
+        void StopNullableCoroutine(Coroutine routine);
         Coroutine StartCoroutine(IEnumerator enumerator);
     }
 }
