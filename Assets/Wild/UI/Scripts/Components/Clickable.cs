@@ -12,7 +12,7 @@ namespace Wild.UI.Components
         private Coroutine _waitAndInvokeCoroutine;
 
         private bool _interactable = true;
-        public bool Interactable
+        public virtual bool Interactable
         {
             get { return _interactable; }
             set

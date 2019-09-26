@@ -5,7 +5,7 @@ using Wild.UI.Helpers;
 
 namespace Wild.UI.Components.Canvases
 {
-    public class CanvasController : UIMonoBehaviourBase, ICanvasController, IOnValidate
+    public class CanvasController : UIMonoBehaviourBase, ICanvasController
     {
         [SerializeField]
         private RectTransform _rootLayout;
@@ -23,11 +23,16 @@ namespace Wild.UI.Components.Canvases
         private CanvasGroup _canvasGroup;
         public CanvasGroup CanvasGroup => _canvasGroup;
 
-        public void OnValidate()
+        [SerializeField]
+        private GraphicRaycaster _graphicRaycaster;
+        public GraphicRaycaster GraphicRaycaster => _graphicRaycaster;
+
+        protected override void OnValidate()
         {
             _canvas = GetComponent<Canvas>();
             _canvasScaler = GetComponent<CanvasScaler>();
             _canvasGroup = GetComponent<CanvasGroup>();
+            _graphicRaycaster = GetComponent<GraphicRaycaster>();
         }
     }
 }

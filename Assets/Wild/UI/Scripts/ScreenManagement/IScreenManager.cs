@@ -12,13 +12,15 @@ namespace Wild.UI.ScreenManagement
 
         SystemManager SystemManager { get; }
 
+        TScreen GetScreen<TScreen>() where TScreen : IScreen, new();
+
         TScreen ShowScreen<TScreen>(int? sortOrder = null) where TScreen : IScreen, new();
 
         TScreen ShowScreen<TScreen>(IGenericNewTypeContainer<TScreen> screenTypeContainer, int? sortOrder = null) where TScreen : IScreen;
 
-        void HideScreen<T>() where T : IScreen;
+        void HideScreen<TScreen>() where TScreen : IScreen;
 
-        void DestroyScreen<T>() where T : IScreen;
+        void DestroyScreen<TScreen>() where TScreen : IScreen;
         void DestroyScreens<TScreenBase>() where TScreenBase : IScreen;
     }
 }

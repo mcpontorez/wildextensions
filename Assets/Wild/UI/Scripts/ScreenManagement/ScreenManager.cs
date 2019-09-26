@@ -25,7 +25,7 @@ namespace Wild.UI.ScreenManagement
 
         private Dictionary<System.Type, IScreen> _screens = new Dictionary<System.Type, IScreen>();
 
-        public TScreen ShowScreen<TScreen>(int? sortOrder = null) where TScreen : IScreen, new()
+        public TScreen GetScreen<TScreen>() where TScreen : IScreen, new()
         {
             System.Type screenType = typeof(TScreen);
 
@@ -40,6 +40,12 @@ namespace Wild.UI.ScreenManagement
             }
             else
                 screen = (TScreen)_screens[screenType];
+            return screen;
+        }
+
+        public TScreen ShowScreen<TScreen>(int? sortOrder = null) where TScreen : IScreen, new()
+        {
+            TScreen screen = GetScreen<TScreen>();
 
             if (sortOrder != null)
                 screen.Data.CanvasController.Canvas.sortingOrder = (int)sortOrder;

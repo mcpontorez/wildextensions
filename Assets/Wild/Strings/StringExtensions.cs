@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Wild.Strings
@@ -43,5 +44,8 @@ namespace Wild.Strings
                 return value;
             return defaultValue;
         }
+
+        public static string[] SplitByNewLine(this string target) =>
+            target.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
     }
 }

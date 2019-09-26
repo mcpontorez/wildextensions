@@ -13,5 +13,6 @@ namespace Wild.UI.Components.Canvases
         CanvasScaler CanvasScaler { get; }
 
         CanvasGroup CanvasGroup { get; }
+        GraphicRaycaster GraphicRaycaster { get; }
     }
 }
