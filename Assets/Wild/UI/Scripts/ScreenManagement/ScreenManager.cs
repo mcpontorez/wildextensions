@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Wild.Generics;
@@ -82,7 +84,7 @@ namespace Wild.UI.ScreenManagement
 
         public void HideScreen<TScreen>() where TScreen: IScreen
         {
-            System.Type screenType = typeof(TScreen);
+            Type screenType = typeof(TScreen);
 
             if (_screens.ContainsKey(screenType))
                 _screens[screenType].Hide();
@@ -101,9 +103,9 @@ namespace Wild.UI.ScreenManagement
 
         public void DestroyScreens<TScreenBase>() where TScreenBase : IScreen
         {
-            System.Type screenBaseType = typeof(TScreenBase);
-            List<System.Type> screenTypes = _screens.Keys.Where(k => screenBaseType.IsAssignableFrom(k)).ToList();
 
+            Type screenBaseType = typeof(TScreenBase);
+            List<Type> screenTypes = _screens.Keys.Where(k => screenBaseType.GetTypeInfo().IsAssignableFrom(k.GetTypeInfo())).ToList();
             foreach (var screenType in screenTypes)
             {
                 _screens[screenType].Destroy();

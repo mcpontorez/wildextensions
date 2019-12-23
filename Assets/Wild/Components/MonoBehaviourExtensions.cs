@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Wild.Components
@@ -19,5 +21,13 @@ namespace Wild.Components
             if (coroutine != null)
                 target.StopCoroutine(coroutine);
         }
+
+        public static IEnumerator StartAllCoroutines(this MonoBehaviour monoBehaviour, IEnumerable<IEnumerator> enumerators)
+        {
+            return enumerators.Select(monoBehaviour.StartCoroutine).ToArray().GetEnumerator();
+        }
+
+        public static IEnumerator StartAllCoroutines(this MonoBehaviour monoBehaviour, params IEnumerator[] enumerators) =>
+            StartAllCoroutines(monoBehaviour, (IEnumerable<IEnumerator>) enumerators);
     }
 }

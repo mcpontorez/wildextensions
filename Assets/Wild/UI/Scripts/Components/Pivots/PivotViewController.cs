@@ -25,7 +25,7 @@ namespace Wild.UI.Components.Pivots
 
             title.Text = text;
             int index = _titles.Count - 1;
-            title.OnClick += () =>
+            title.Click += () =>
             {
                 SetTitleAsMainTitle(index);
 

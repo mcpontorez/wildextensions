@@ -44,7 +44,7 @@ namespace Wild.UI.MessageBoxes
             button.Text = text;
             if (isSecelected)
                 EventSystem.current.SetSelectedGameObject(button.gameObject);
-            button.OnClick += () => OnButtonClick(onClick);
+            button.Click += () => OnButtonClick(onClick);
         }
     }
 }

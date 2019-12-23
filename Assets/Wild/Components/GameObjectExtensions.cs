@@ -21,5 +21,9 @@ namespace Wild.Components
         {
             target.SetActive(false);
         }
+
+        public static void Activate(this GameObject target) => 
+            target.SetActive(true);
+        public static void Deactivate(this GameObject target) => target.SetActive(false);
     }
 }

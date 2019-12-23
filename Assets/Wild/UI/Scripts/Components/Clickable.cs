@@ -23,20 +23,20 @@ namespace Wild.UI.Components
         }
         protected virtual void OnInteractableChanged(bool value) { }
 
-        public event Action OnFirstClick;
-        public event Action OnClick;
-        public event Action OnSingleClick;
-        public event Action OnDoubleClick;
-        public event Action<int> OnLastClick;
+        public event Action FirstClick;
+        public event Action Click;
+        public event Action SingleClick;
+        public event Action DoubleClick;
+        public event Action<int> LastClick;
 
         public virtual void InvokeOnCliсk() => InvokeOnCliсk(1);
 
         public virtual void InvokeOnCliсk(int clickCount)
         {
             if(Interactable)
-                OnClick?.Invoke();
+                Click?.Invoke();
             if (clickCount == 1)
-                OnFirstClick?.Invoke();
+                FirstClick?.Invoke();
             StopAndStartWaintAndInvoke(clickCount);
         }
 
@@ -69,19 +69,19 @@ namespace Wild.UI.Components
         {
             yield return new WaitForSeconds(0.2f);
             if (clickCount == 1)
-                OnSingleClick?.Invoke();
+                SingleClick?.Invoke();
             else if (clickCount == 2)
-                OnDoubleClick?.Invoke();
-            OnLastClick?.Invoke(clickCount);
+                DoubleClick?.Invoke();
+            LastClick?.Invoke(clickCount);
         }
 
         public virtual void ClearOnClickEvents()
         {
-            OnFirstClick = null;
-            OnSingleClick = null;
-            OnDoubleClick = null;
-            OnLastClick = null;
-            OnClick = null;
+            FirstClick = null;
+            SingleClick = null;
+            DoubleClick = null;
+            LastClick = null;
+            Click = null;
         }
 
         protected override void OnDestroy()

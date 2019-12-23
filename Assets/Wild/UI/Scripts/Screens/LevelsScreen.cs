@@ -20,7 +20,7 @@ namespace Wild.UI.Screens
 
             ButtonController button = CreateItem(UIComponentManager.Components.button, UIContainerTag.Tag0);
             button.Text = "назад";
-            button.OnClick += () => HideShow<MainMenuScreen>();
+            button.Click += () => HideShow<MainMenuScreen>();
 
             TextController title = CreateItem(UIComponentManager.Components.text, UIContainerTag.Tag3);
             title.Text = "сезончик";
@@ -28,11 +28,11 @@ namespace Wild.UI.Screens
 
             ButtonController leftButton = CreateItem(UIComponentManager.Components.button, UIContainerTag.Tag4);
             leftButton.Text = "лево";
-            leftButton.OnClick += UpdateLevelList;
+            leftButton.Click += UpdateLevelList;
 
             ButtonController rightButton = CreateItem(UIComponentManager.Components.button, UIContainerTag.Tag5);
             rightButton.Text = "право";
-            rightButton.OnClick += UpdateLevelList;
+            rightButton.Click += UpdateLevelList;
 
             _levelList = CreateItem(UIComponentManager.Components.collectionView, UIContainerTag.Tag1);
             UpdateLevelList();

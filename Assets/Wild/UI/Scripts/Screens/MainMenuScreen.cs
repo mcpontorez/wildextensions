@@ -22,7 +22,7 @@ namespace Wild.UI.Screens
 
             ButtonController button = CreateItem(UIComponentsData2.Instance.button, UIContainerTag.Tag0);
             button.Text = "играть";
-            button.OnClick += () => HideShow<LevelsScreen>();
+            button.Click += () => HideShow<LevelsScreen>();
 
             for (int i = 0; i < 3; i++)
             {
@@ -30,7 +30,7 @@ namespace Wild.UI.Screens
 
                 button.Text = "кнопка" + i;
                 int c = i;
-                button.OnClick += () =>
+                button.Click += () =>
                 {
                     Hide();
                     IMessageBox messagebox = new SimpleMessageBox("Вы уверены?" + c, ScreenManager.Container.ScreensContainer);

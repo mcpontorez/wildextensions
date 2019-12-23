@@ -6,11 +6,11 @@ namespace Wild.UI.Components
     {
         bool Interactable { get; set; }
 
-        event Action OnFirstClick;
-        event Action OnClick;
-        event Action OnSingleClick;
-        event Action OnDoubleClick;
-        event Action<int> OnLastClick;
+        event Action FirstClick;
+        event Action Click;
+        event Action SingleClick;
+        event Action DoubleClick;
+        event Action<int> LastClick;
 
         void InvokeOnCliсk();
         void InvokeOnCliсk(int clickCount);

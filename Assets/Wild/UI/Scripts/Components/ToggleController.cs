@@ -26,8 +26,9 @@ namespace Wild.UI.Components
             _textController = GetComponentInChildren<TextController>();
         }
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             _togleComponent.onValueChanged.AddListener(OnValueChange);
         }
 

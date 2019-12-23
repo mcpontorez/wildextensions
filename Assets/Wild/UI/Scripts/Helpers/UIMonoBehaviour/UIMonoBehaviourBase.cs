@@ -20,6 +20,8 @@ using UnityEngine;namespace Wild.UI.Helpers{
 
         protected virtual void Start() { }
 
+        protected virtual void OnEnable() { }
+
         protected virtual void Awake() { }
 
         /// <summary>
