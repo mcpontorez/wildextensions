@@ -85,6 +85,9 @@ namespace Wild.UI.ScreenManagement.Data
             return _uiContainers[containerTag];
         }
 
+        public TComponent GetComponentInContainer<TComponent>(UIContainerTag containerTag) => 
+            GetUIContainer(containerTag).GetComponent<TComponent>();
+
         public void Awake()
         {
             foreach (var item in _uiContainerDatas)
