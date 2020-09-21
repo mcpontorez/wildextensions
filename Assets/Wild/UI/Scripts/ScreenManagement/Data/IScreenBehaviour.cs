@@ -2,7 +2,7 @@
 
 namespace Wild.UI.ScreenManagement.Data
 {
-    public abstract class ScreenBehaviourBase : MonoBehaviour, IScreenBehaviour
+    public interface IScreenBehaviour
     {
     }
 }

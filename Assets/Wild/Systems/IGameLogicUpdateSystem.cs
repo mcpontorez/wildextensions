@@ -26,5 +26,6 @@ namespace Wild.Systems
         /// <param name="routine"></param>
         void StopNullableCoroutine(Coroutine routine);
         Coroutine StartCoroutine(IEnumerator enumerator);
+        IEnumerator StartAllCoroutines(params IEnumerator[] enumerators);
     }
 }

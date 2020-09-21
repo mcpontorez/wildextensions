@@ -11,42 +11,42 @@ namespace Wild.UI.Components
     public class RawImageSource : UIMonoBehaviourBase
     {
         [SerializeField]
-        private PathPare _pathPare;
+        private bool _isAutoLoadImage = true;
         [SerializeField]
-        private PathPare PathPare => _pathPare;
+        private PathData _pathData;
+        public PathData PathData { get => _pathData; set => _pathData = value; }
 
         [SerializeField]
         private RawImage _imageComponent;
         private RawImage ImageComponent => _imageComponent;
-
-        [SerializeField]
-        private AspectRatioFitter _imageAspectRatio;
-        [SerializeField]
-        private AspectRatioFitter ImageAspectRatio => _imageAspectRatio;
 
 
         protected override void Start()
         {
             base.Start();
 
-            SetImage();
+            if(_isAutoLoadImage)
+                LoadImage();
         }
 
-        private void SetImage(bool isLog = true)
+        public void LoadImage(bool isLog = true)
         {
             Clear();
 
-            string path = PathPare.ToAbsolutePath();
-            Byte[] bytes = File.ReadAllBytes(path);            
-            Texture2D texture = new Texture2D(32, 32);
+            string path = PathData.ToAbsolutePath();
+            if(!GetValidateFileExtension(path))
+            {
+                Log($"Invalid file extension. Not imagefile extension {path}", isLog);
+                return;
+            }
+            byte[] bytes = File.ReadAllBytes(path);            
+            Texture2D texture = new Texture2D(32, 32) { wrapMode = TextureWrapMode.Clamp};
             texture.LoadImage(bytes);
 
-            Debug.Log($"Image load from {path}");
+            Log($"Image load from {path}", isLog);
 
             ImageComponent.texture = texture;
             ImageComponent.color = Color.white;
-
-            _imageAspectRatio.aspectRatio = texture.width / (float)texture.height;
         }
 
         public void Clear()
@@ -63,6 +63,17 @@ namespace Wild.UI.Components
         {
             Clear();
             base.OnDestroy();
+        }
+
+        private bool GetValidateFileExtension(string path)
+        {
+            string extension = Path.GetExtension(path);
+            return extension == ".png" || extension == ".jpg";
+        }
+
+        private void Log(string message, bool isLog = true)
+        {
+            if (isLog) Debug.Log(message);
         }
     }
 }

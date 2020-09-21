@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Wild.Systems;
+using System.Threading;
 
 namespace Wild.Freelance.AssetServices
 {
@@ -15,9 +16,10 @@ namespace Wild.Freelance.AssetServices
         {
             GameLogicUpdateSystem = gameLogicUpdateSystem;
         }
-        public void ConvertAsync(string filePath, Action<Texture2D> onResultReady, bool isLog = true)
+        public void ConvertAsync(string filePath, Action<Texture2D> onResultReady, CancellationToken cancelltaionToken, bool isLog = true)
         {
-            GameLogicUpdateSystem.StartCoroutine(Converting(filePath, onResultReady, isLog));
+            Coroutine coroutine = GameLogicUpdateSystem.StartCoroutine(Converting(filePath, onResultReady, isLog));
+            cancelltaionToken.Register(() => GameLogicUpdateSystem.StopNullableCoroutine(coroutine));
         }
 
         public void ConvertAsync(List<string> filePaths, Action<List<Texture2D>> onResultReady, bool isLog = true)

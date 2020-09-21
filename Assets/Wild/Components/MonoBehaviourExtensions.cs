@@ -22,6 +22,18 @@ namespace Wild.Components
                 target.StopCoroutine(coroutine);
         }
 
+        public static void StopNullableCoroutine(this MonoBehaviour target, IEnumerator coroutine)
+        {
+            if (coroutine != null)
+                target.StopCoroutine(coroutine);
+        }
+
+        public static IEnumerator DoStartCoroutine(this MonoBehaviour target, IEnumerator routine)
+        {
+            target.SetActiveAndEnabled(true);
+            yield return target.StartCoroutine(routine);
+        }
+
         public static IEnumerator StartAllCoroutines(this MonoBehaviour monoBehaviour, IEnumerable<IEnumerator> enumerators)
         {
             return enumerators.Select(monoBehaviour.StartCoroutine).ToArray().GetEnumerator();

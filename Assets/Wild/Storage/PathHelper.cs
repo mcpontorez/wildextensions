@@ -29,6 +29,6 @@ namespace Wild.Storage
             return result;
         }
 
-        public static string ToAbsolutePath(this PathPare pathPare) => ToAbsolutePath(pathPare.Kind, pathPare.Path);
+        public static string ToAbsolutePath(this PathData target) => ToAbsolutePath(target.Kind, target.Path);
     }
 }

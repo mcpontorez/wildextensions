@@ -10,7 +10,7 @@ namespace Wild.UI.ScreenManagement.Data
     {
         [SerializeField]
         private ScreenBehaviourBase _screenBehaviour;
-        public ScreenBehaviourBase ScreenBehaviour => _screenBehaviour;
+        public IScreenBehaviour ScreenBehaviour => _screenBehaviour;
 
         [SerializeField]
         private CanvasController _canvas;

@@ -57,5 +57,10 @@ namespace Wild.Systems
                 return;
             this.StopNullableCoroutine(routine);
         }
+
+        IEnumerator IGameLogicUpdateSystem.StartAllCoroutines(params IEnumerator[] enumerators)
+        {
+            return this.StartAllCoroutines(enumerators);
+        }
     }
 }
