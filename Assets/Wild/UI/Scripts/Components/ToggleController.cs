@@ -8,23 +8,17 @@ namespace Wild.UI.Components
     public class ToggleController : UIMonoBehaviourBase, ILabel
     {
         public bool IsOn { get { return TogleComponent.isOn; } set { TogleComponent.isOn = value; } }
-        public event Action<bool> OnValueChanged;
+        public event Action<bool> ValueChanged;
 
         [SerializeField]
         private Toggle _togleComponent;
         public Toggle TogleComponent { get { return _togleComponent; } }
 
         [SerializeField]
-        private TextController _textController;
-        public TextController TextController { get { return _textController; } }
+        private TextControllerBase _textController;
+        public TextControllerBase TextController { get { return _textController; } }
 
         public string Text { get { return TextController.Text; } set { TextController.Text = value; } }
-
-        protected override void OnValidate()
-        {
-            _togleComponent = GetComponent<Toggle>();
-            _textController = GetComponentInChildren<TextController>();
-        }
 
         protected override void Awake()
         {
@@ -34,12 +28,12 @@ namespace Wild.UI.Components
 
         private void OnValueChange(bool isOn)
         {
-            OnValueChanged?.Invoke(isOn);
+            ValueChanged?.Invoke(isOn);
         }
 
         public void ClearOnValueChanged()
         {
-            OnValueChanged = null;
+            ValueChanged = null;
             _togleComponent.onValueChanged.RemoveAllListeners();
         }
 
@@ -47,7 +41,7 @@ namespace Wild.UI.Components
         {
             base.OnDestroy();
 
-            _togleComponent.onValueChanged.AddListener(OnValueChange);
+            _togleComponent.onValueChanged.RemoveListener(OnValueChange);
         }
     }
 }

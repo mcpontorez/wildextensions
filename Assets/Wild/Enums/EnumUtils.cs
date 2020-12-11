@@ -6,9 +6,9 @@ namespace Wild.Enums
 {
     public class EnumUtils
     {
-        public static List<TEnum> GetValues<TEnum>() where TEnum : struct
+        public static TEnum[] GetValues<TEnum>() where TEnum : struct
         {
-            return Enum.GetValues(typeof(TEnum)).Cast<TEnum>().ToList();
+            return Enum.GetValues(typeof(TEnum)).Cast<TEnum>().ToArray();
         }
     }
 }

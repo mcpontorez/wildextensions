@@ -9,7 +9,7 @@ using Wild.UI.MessageBoxes;
 
 namespace Wild.UI.Screens
 {
-    public class MainMenuScreen : ScreenBase
+    public class MainMenuScreen : ResourceScreenBase
     {
         protected override string DataPath { get { return "WildUI/Screens/MainMenuScreen"; } }
 
@@ -18,7 +18,7 @@ namespace Wild.UI.Screens
             base.OnInit();
 
             ToggleController toggle = CreateItem(UIComponentManager.Components.toggle, UIContainerTag.Tag1);
-            toggle.OnValueChanged += (isOn) => Debug.Log(isOn);
+            toggle.ValueChanged += (isOn) => Debug.Log(isOn);
 
             ButtonController button = CreateItem(UIComponentsData2.Instance.button, UIContainerTag.Tag0);
             button.Text = "играть";

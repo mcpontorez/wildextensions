@@ -6,19 +6,18 @@ namespace Wild.UI.ScreenManagement
 {
     public abstract class ScreenBase : IScreen
     {
-        protected abstract string DataPath { get; }
-
         public ScreenData Data { get; private set; }
 
         public IScreenManager ScreenManager { get; set; }
 
         protected ScreenBase()
         {
-            Data = Resources.Load<ScreenData>(DataPath);
-            Data = Object.Instantiate(Data);
+            Data = InitScreenData();
             Object.DontDestroyOnLoad(Data.gameObject);
             Data.gameObject.SetActive(false);
         }
+
+        protected abstract ScreenData InitScreenData();
 
         void IScreen.Init()
         {

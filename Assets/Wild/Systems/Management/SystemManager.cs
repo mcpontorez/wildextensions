@@ -53,7 +53,7 @@ namespace Wild.Systems.Management
             return system;
         }
 
-        public void AddSystem<T>(T system) where T : Component
+        public T AddSystem<T>(T system) where T : Component
         {
             Type systemType = typeof(T);
 
@@ -63,6 +63,8 @@ namespace Wild.Systems.Management
             _systems.Add(systemType, system);
 
             system.transform.SetParent(_container);
+
+            return system;
         }
 
         public void DestroySystem<T>()

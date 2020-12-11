@@ -6,8 +6,8 @@ namespace Wild.UI.Components
     public class ButtonController : Clickable, IButton
     {
         [SerializeField]
-        private TextController _textController;
-        public TextController TextController { get { return _textController; } }
+        private TextControllerBase _textController;
+        public TextControllerBase TextController { get { return _textController; } }
 
         [SerializeField]
         private Button _buttonComponent;

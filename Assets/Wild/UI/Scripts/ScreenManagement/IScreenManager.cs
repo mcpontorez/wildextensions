@@ -19,6 +19,7 @@ namespace Wild.UI.ScreenManagement
         TScreen ShowScreen<TScreen>(IGenericNewTypeContainer<TScreen> screenTypeContainer, int? sortOrder = null) where TScreen : IScreen;
 
         void HideScreen<TScreen>() where TScreen : IScreen;
+        void HideAllScreens();
 
         void DestroyScreen<TScreen>() where TScreen : IScreen;
         void DestroyScreens<TScreenBase>() where TScreenBase : IScreen;

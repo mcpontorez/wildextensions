@@ -1,13 +1,14 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Wild.UI.Components
 {
-    public class TextController : TextControllerBase
+    public class TextMeshProController : TextControllerBase
     {
         [SerializeField]
-        private Text _textComponent;
-        public Text TextComponent { get { return _textComponent; } }
+        private TextMeshProUGUI _textComponent;
+        public TextMeshProUGUI TextComponent { get { return _textComponent; } }
         public override MonoBehaviour TextComponentBase => TextComponent;
 
         protected override string GetText() => TextComponent.text;
@@ -17,7 +18,7 @@ namespace Wild.UI.Components
         {
             base.OnValidate();
             if (_textComponent == null)
-                _textComponent = GetComponentInChildren<Text>();
+                _textComponent = GetComponentInChildren<TextMeshProUGUI>();
         }
     }
 }

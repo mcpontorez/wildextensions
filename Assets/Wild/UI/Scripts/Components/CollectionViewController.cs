@@ -61,8 +61,9 @@ namespace Wild.UI.Components
 
         public void ResetScrollPosition()
         {
-            if (ScrollRectComponent != null)
-                ScrollRectComponent.normalizedPosition = Vector2.one;
+            Vector2 normalizedPosition = ScrollRectComponent.normalizedPosition, resetNormalizedPosition = Vector2.up;
+            if(!Mathf.Approximately(normalizedPosition.x, resetNormalizedPosition.x) || !Mathf.Approximately(normalizedPosition.y, resetNormalizedPosition.y))
+                ScrollRectComponent.normalizedPosition = Vector2.up;
         }
     }
 }

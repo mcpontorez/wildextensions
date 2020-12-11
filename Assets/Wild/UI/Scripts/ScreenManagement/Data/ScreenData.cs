@@ -6,7 +6,7 @@ using Wild.UI.Components.Canvases;
 
 namespace Wild.UI.ScreenManagement.Data
 {
-    public class ScreenData : MonoBehaviour, IOnValidate, IAwake
+    public sealed class ScreenData : MonoBehaviour
     {
         [SerializeField]
         private ScreenBehaviourBase _screenBehaviour;
@@ -16,12 +16,14 @@ namespace Wild.UI.ScreenManagement.Data
         private CanvasController _canvas;
         public ICanvasController CanvasController { get { return _canvas; } }
 
-        private Dictionary<UIContainerTag, UIContainer> _uiContainers = new Dictionary<UIContainerTag, UIContainer>();
-
         [SerializeField]
         private List<UIContainerData> _uiContainerDatas = new List<UIContainerData>();
 
-        public void OnValidate()
+        private Dictionary<UIContainerTag, UIContainer> _uiTagContainerPairs;
+        private IReadOnlyDictionary<UIContainerTag, UIContainer> UiTagContainerPairs =>
+            _uiTagContainerPairs ?? (_uiTagContainerPairs = _uiContainerDatas.ToDictionary(c => c.ContainerTag, c => c.Container));
+
+        private void OnValidate()
         {
             _canvas = GetComponentInChildren<CanvasController>();
 
@@ -80,20 +82,12 @@ namespace Wild.UI.ScreenManagement.Data
 
         public UIContainer GetUIContainer(UIContainerTag containerTag)
         {
-            if (!_uiContainers.ContainsKey(containerTag))
+            if (!UiTagContainerPairs.ContainsKey(containerTag))
                 return null;
-            return _uiContainers[containerTag];
+            return UiTagContainerPairs[containerTag];
         }
 
         public TComponent GetComponentInContainer<TComponent>(UIContainerTag containerTag) => 
             GetUIContainer(containerTag).GetComponent<TComponent>();
-
-        public void Awake()
-        {
-            foreach (var item in _uiContainerDatas)
-            {
-                _uiContainers.Add(item.ContainerTag, item.Container);
-            }
-        }
     }
 }

@@ -8,7 +8,7 @@ using Wild.UI.Components.Management;
 
 namespace Wild.UI.Screens
 {
-    public class LevelsScreen : ScreenBase
+    public class LevelsScreen : ResourceScreenBase
     {
         protected override string DataPath { get { return "WildUI/Screens/LevelsScreen"; } }
 
@@ -43,7 +43,7 @@ namespace Wild.UI.Screens
         {
             _levelList.SetItems(UIComponentManager.Components.toggle, Random.Range(9, 100), (sender, args) =>
             {
-                args.Item.Text = args.Index.ToString(); args.Item.OnValueChanged += (a) => Debug.Log(args.Item.Text + a);
+                args.Item.Text = args.Index.ToString(); args.Item.ValueChanged += (a) => Debug.Log(args.Item.Text + a);
             });
         }
     }

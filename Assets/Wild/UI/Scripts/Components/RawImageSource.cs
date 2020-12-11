@@ -18,7 +18,7 @@ namespace Wild.UI.Components
 
         [SerializeField]
         private RawImage _imageComponent;
-        private RawImage ImageComponent => _imageComponent;
+        public RawImage ImageComponent => _imageComponent;
 
 
         protected override void Start()
