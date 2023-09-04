@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using Wild.Storage;
 using Wild.UI.Helpers;
@@ -20,6 +21,13 @@ namespace Wild.UI.Components
         private RawImage _imageComponent;
         public RawImage ImageComponent => _imageComponent;
 
+        [SerializeField]
+        private UnityEvent _imageLoaded;
+        public event UnityAction ImageLoaded
+        {
+            add { _imageLoaded.AddListener(value); }
+            remove { _imageLoaded.RemoveListener(value); }
+        }
 
         protected override void Start()
         {
@@ -47,6 +55,8 @@ namespace Wild.UI.Components
 
             ImageComponent.texture = texture;
             ImageComponent.color = Color.white;
+
+            _imageLoaded?.Invoke();
         }
 
         public void Clear()
@@ -67,7 +77,7 @@ namespace Wild.UI.Components
 
         private bool GetValidateFileExtension(string path)
         {
-            string extension = Path.GetExtension(path);
+            string extension = Path.GetExtension(path).ToLower();
             return extension == ".png" || extension == ".jpg";
         }
 
