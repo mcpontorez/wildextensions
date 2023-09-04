@@ -7,9 +7,9 @@ namespace Wild.Systems
 {
     public interface IGameLogicUpdateSystem
     {
-        event Action OnUpdated;
-        event Action OnFixedUpdated;
-        event Action OnLateUpdated;
+        event Action Updated;
+        event Action FixedUpdated;
+        event Action LateUpdated;
 
         void Invoke(float delay, Action action);
         void InvokeRealtimeDelay(float delay, Action action);

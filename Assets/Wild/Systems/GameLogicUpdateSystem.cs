@@ -8,15 +8,15 @@ namespace Wild.Systems
 {
     public class GameLogicUpdateSystem : MonoBehaviour, IGameLogicUpdateSystem
     {
-        public event Action OnUpdated;
-        public event Action OnFixedUpdated;
-        public event Action OnLateUpdated;
+        public event Action Updated;
+        public event Action FixedUpdated;
+        public event Action LateUpdated;
 
-        private void Update() => OnUpdated?.Invoke();
+        private void Update() => Updated?.Invoke();
 
-        private void LateUpdate() => OnLateUpdated?.Invoke();
+        private void LateUpdate() => LateUpdated?.Invoke();
 
-        private void FixedUpdate() => OnFixedUpdated?.Invoke();
+        private void FixedUpdate() => FixedUpdated?.Invoke();
 
         public void Invoke(float delay, Action action) => StartCoroutine(Invoking(delay, action));
         public void InvokeRealtimeDelay(float delay, Action action) => StartCoroutine(InvokingRealtime(delay, action));
