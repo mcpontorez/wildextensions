@@ -20,5 +20,17 @@ namespace Wild.UI.Components
             base.OnInteractableChanged(value);
             ButtonComponent.interactable = value;
         }
+
+        protected override void Start()
+        {
+            base.Start();
+            ButtonComponent.onClick.AddListener(InvokeOnCliсk);
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            ButtonComponent.onClick.RemoveListener(InvokeOnCliсk);
+        }
     }
 }
